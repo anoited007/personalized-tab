@@ -1,0 +1,6 @@
+#news {
+  border-right: 1px solid black;
+  display: flex;
+  width: 20%;
+  height: auto;
+}
