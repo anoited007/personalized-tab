@@ -40,7 +40,7 @@ function getTime(){
   //console.log(date.toLocaleTimeString());
 }
 
-function getNews(){
+/*function getNews(){
   var request = new XMLHttpRequest();
   request.open('GET', 'http://localhost/extension/rss.xml', true);
   request.onload(function(response){
@@ -54,7 +54,20 @@ function getNews(){
     }
 
 });
+}*/
+
+function test(){
+  fetch("https://bit.ly/2AlayQb", {mode:'no-cors'})
+  .then(function(response){
+   return response.json();
+   })
+   .then(function(data){
+
+     console.log(data);
+  });
 }
 getQuote();
 getBackground();
 getTime();
+//getNews();
+test();
