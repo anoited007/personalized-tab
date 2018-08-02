@@ -1,8 +1,8 @@
 
 
 function getQuote(){
-//  fetch("http://quotes.rest/qod.json?category=management")
-  fetch("http://localhost/extension/test.json", {mode:'no-cors'})
+  fetch("http://quotes.rest/qod.json?category=management")
+  //fetch("http://localhost/extension/test.json", {mode:'no-cors'})
   .then(function(response){
    return response.json();
    })
@@ -57,13 +57,31 @@ function getTime(){
 }*/
 
 function test(){
-  fetch("https://bit.ly/2AlayQb", {mode:'no-cors'})
-  .then(function(response){
-   return response.json();
+  fetch("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.feedburner.com%2Feset%2Fblog")
+   .then(function(response){
+     return response.json();
    })
-   .then(function(data){
+  .then(function(data){
+        console.log(data);
 
-     console.log(data);
+  });
+
+  fetch("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fsecurityaffairs.co%2Fwordpress%2Ffeed")
+   .then(function(response){
+     return response.json();
+   })
+  .then(function(data){
+    console.log("Security Affairs");
+        console.log(data);
+  });
+
+  fetch("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.darkreading.com%2Frss_simple.asp")
+   .then(function(response){
+     return response.json();
+   })
+  .then(function(data){
+    console.log("Dark Reading");
+        console.log(data);
   });
 }
 getQuote();
