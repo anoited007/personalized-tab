@@ -9,8 +9,7 @@ function getQuote(){
    .then(function(data){
      //get background url
      var background = data["contents"]["quotes"][0]["background"];
-    // console.log("logging for Fetch");
-    // console.log(data);
+     console.log(background);
     // console.log(data["contents"]["quotes"][0]);
      const quotesContainter = document.querySelector("#quotes");
      let quote = document.createElement("p");
@@ -23,7 +22,7 @@ function getQuote(){
 
 function getBackground(background){
   let container = document.querySelector("#container");
-  if(background){
+  if(background !== null || background !== undefined){
     container.style.backgroundImage = "url(background)";
   }
   else{
@@ -74,7 +73,7 @@ function getNews(){
     let length = data["items"].length;
     for(let i=0; i<length; i++){
       let newsItem = document.createElement("div");
-      newsItem.classList.add("news");
+      newsItem.classList.add("news","card");
       let title =  data["items"][i]["title"]
       let url = data["items"][i]["link"];
       let link = document.createElement("a");
@@ -100,7 +99,7 @@ function getNews(){
         let length = data["items"].length;
         for(let i=0; i<length; i++){
           let newsItem = document.createElement("div");
-          newsItem.classList.add("news");
+          newsItem.classList.add("news","card");
           let title =  data["items"][i]["title"]
           let url = data["items"][i]["link"];
           let link = document.createElement("a");
@@ -118,6 +117,7 @@ function getNews(){
      return response.json();
    })
   .then(function(data){
+    console.log(data)
     let source = document.createElement("p");
     source.classList.add("news-source");
     source.innnerText = "Dark Reading";
@@ -126,7 +126,7 @@ function getNews(){
     let length = data["items"].length;
     for(let i=0; i<length; i++){
       let newsItem = document.createElement("div");
-      newsItem.classList.add("news");
+      newsItem.classList.add("news","card");
       let title =  data["items"][i]["title"]
       let url = data["items"][i]["link"];
       let link = document.createElement("a");
