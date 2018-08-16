@@ -9,13 +9,14 @@ function getQuote(){
    .then(function(data){
      //get background url
      var background = data["contents"]["quotes"][0]["background"];
-     console.log(background);
+     // console.log(background);
     // console.log(data["contents"]["quotes"][0]);
      const quotesContainter = document.querySelector("#quotes");
      let quote = document.createElement("p");
      quotesContainter.appendChild(quote);
     quote.innerText = data["contents"]["quotes"][0]["quote"];
   //  console.log(data["contents"]["quotes"][0]["background"])
+  return background;
   });
 
 }
@@ -117,7 +118,6 @@ function getNews(){
      return response.json();
    })
   .then(function(data){
-    console.log(data)
     let source = document.createElement("p");
     source.classList.add("news-source");
     source.innnerText = "Dark Reading";
@@ -139,6 +139,16 @@ function getNews(){
 
   });
 }
+
+function todo() {
+var add-todo = document.querySelector("#add-todo");
+
+}
+
+function addTodo(event) {
+add-todo.
+}
+
 getQuote();
 getBackground();
 getTime();
