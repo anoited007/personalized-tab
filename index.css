@@ -35,3 +35,8 @@ content:"\005f";
 #quotes {
   font-size: 1em;
 }
+
+#divider {
+  width: 20px;
+  height: 100vh;
+}

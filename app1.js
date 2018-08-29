@@ -18,19 +18,18 @@ function getQuote(){
   //  console.log(data["contents"]["quotes"][0]["background"])
   return background;
   });
-
-}
-
-function getBackground(background){
-  let container = document.querySelector("#container");
-  if(background !== null || background !== undefined){
-    container.style.backgroundImage = "url("+background+")";
+  function getBackground(background){
+    let container = document.querySelector("#container");
+    if(background !== null || background !== undefined){
+      container.style.backgroundImage = "url("+background+")";
+    }
+    else{
+      container.style.backgroundImage = "url(img/bg01.jpg)";
+    }
   }
-  else{
-    container.style.backgroundImage = "url(img/bg01.jpg)";
-  }
+
+  getBackground(background);
 }
-//getBackground(background);
 
 function getTime(){
   let date = new Date();
@@ -143,19 +142,13 @@ function getNews(){
 
 function todo() {
 var addTodo = document.querySelector("#add-todo");
-  addTodo.addEventListener('keyup', (event) => {
-  const keyName = event.key;
-  if(keyName === "Enter"){
-    return false;
-    let todo = document.createElement("span");
-    todo.classList.add("todo");
-    todo.innerText = addTodo.value;
-    addTodo.inertBefore(todo);
-      }
-  });
+
+}
+
+function addTodo(event) {
+
 }
 
 getQuote();
-//getBackground(background);
 getTime();
 getNews();
