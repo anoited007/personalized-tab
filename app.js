@@ -8,7 +8,7 @@ function getQuote(){
    })
    .then(function(data){
      //get background url
-     var background = data["contents"]["quotes"][0]["background"];
+     //var background = data["contents"]["quotes"][0]["background"];
      // console.log(background);
     // console.log(data["contents"]["quotes"][0]);
      const quotesContainter = document.querySelector("#quotes");
@@ -16,18 +16,20 @@ function getQuote(){
      quotesContainter.appendChild(quote);
     quote.innerText = data["contents"]["quotes"][0]["quote"];
   //  console.log(data["contents"]["quotes"][0]["background"])
-  return background;
   });
 
 }
 
-function getBackground(background){
-  let container = document.querySelector("#container");
+function getBackground(){
+  const background = "https://picsum.photos/2048/1365/?random"
+  let body = document.querySelector("body");
   if(background !== null || background !== undefined){
-    container.style.backgroundImage = "url("+background+")";
+    // TODO: Fix concatination issue with background.
+    // body.style.backgroundImage = "url("+background+")";
+    body.style.backgroundImage = "url(https://picsum.photos/2048/1365/?random)";
   }
   else{
-    container.style.backgroundImage = "url(img/bg01.jpg)";
+    body.style.backgroundImage = "url(img/bg01.jpg)";
   }
 }
 //getBackground(background);
@@ -37,7 +39,8 @@ function getTime(){
   let time = document.createElement("p");
   let timeContainer = document.querySelector("#time");
   timeContainer.appendChild(time);
-  time.innnerText = "Time should show here";// date.toLocaleTimeString();
+  time.innnerText = "Time should show here";
+  // date.toLocaleTimeString();
   //console.log(date.toLocaleTimeString());
 }
 
@@ -142,20 +145,23 @@ function getNews(){
 }
 
 function todo() {
-var addTodo = document.querySelector("#add-todo");
+const addTodo = document.querySelector("#add-todo");
+const todoContainer = document.querySelector("#todo");
+
   addTodo.addEventListener('keyup', (event) => {
   const keyName = event.key;
   if(keyName === "Enter"){
-    return false;
+    event.preventDefault();
     let todo = document.createElement("span");
     todo.classList.add("todo");
     todo.innerText = addTodo.value;
-    addTodo.inertBefore(todo);
+    todoContainer.appendChild(todo);
+    addTodo.value = "";
       }
   });
 }
-
+todo();
 getQuote();
-//getBackground(background);
+//getBackground();
 getTime();
 getNews();
