@@ -2,9 +2,9 @@ body{
   color: #000;
   background:linear-gradient(rgba(185,153,153,.5),rgba(255,0,0,.45)),url('https://picsum.photos/2048/1365/?random'), url('img/bg01.jpg') #2b3137;
     background-position: center 10%;
-    background-size: fixed;
+
 }
-}
+
 #news {
   border-right: 1px solid black;
   display: flex;
@@ -45,6 +45,16 @@ content:"\005f";
   height: 100vh;
 }
 
-.todo{
-  display: block;
+.todo > span{
+  display: inline-block;
+}
+
+#todo > span::after {
+  content: "\A";
+  white-space: pre;
+}
+
+.done{
+  text-decoration: line-through;
+  text-decoration-color: red;
 }

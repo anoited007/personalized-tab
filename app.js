@@ -147,19 +147,33 @@ function getNews(){
 function todo() {
 const addTodo = document.querySelector("#add-todo");
 const todoContainer = document.querySelector("#todo");
-
+let value = addTodo.value;
   addTodo.addEventListener('keyup', (event) => {
   const keyName = event.key;
   if(keyName === "Enter"){
+    //&& value.trim().length > 0
     event.preventDefault();
     let todo = document.createElement("span");
     todo.classList.add("todo");
     todo.innerText = addTodo.value;
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.addEventListener("Click", (event) => {
+      console.log(event.target)
+      if(checkbox.checked){
+        console.log(checkbox.nextElementSibling);
+        checkbox.nextElementSibling.classList.add("done");
+      }
+
+    });
+
+    todoContainer.appendChild(checkbox);
     todoContainer.appendChild(todo);
     addTodo.value = "";
-      }
+     }
   });
 }
+
 todo();
 getQuote();
 //getBackground();
