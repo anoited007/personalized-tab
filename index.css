@@ -56,5 +56,5 @@ content:"\005f";
 
 .done{
   text-decoration: line-through;
-  text-decoration-color: red;
+  text-decoration-color: #000;
 }

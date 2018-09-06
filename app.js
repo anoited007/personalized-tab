@@ -158,14 +158,15 @@ let value = addTodo.value;
     todo.innerText = addTodo.value;
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.addEventListener("Click", (event) => {
-      console.log(event.target)
+    checkbox.onchange = function() {
+      console.log(event.currentTarget)
       if(checkbox.checked){
-        console.log(checkbox.nextElementSibling);
         checkbox.nextElementSibling.classList.add("done");
       }
-
-    });
+      else {
+        checkbox.nextElementSibling.classList.remove("done");
+      }
+    }
 
     todoContainer.appendChild(checkbox);
     todoContainer.appendChild(todo);
