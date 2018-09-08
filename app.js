@@ -156,6 +156,7 @@ let value = addTodo.value;
     let todo = document.createElement("span");
     todo.classList.add("todo");
     todo.innerText = addTodo.value;
+    todo.contentEditable = true;
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.onchange = function() {

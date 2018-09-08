@@ -16,9 +16,9 @@ body{
 content:"\005f";
 }
 
-#container {
+/*#container {
   height: 100vh;
-}
+}*/
 
 .card {
   display: block;
@@ -57,4 +57,12 @@ content:"\005f";
 .done{
   text-decoration: line-through;
   text-decoration-color: #000;
+}
+
+#right {
+  position: fixed;
+  right:1%;
+  bottom: 15%;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
 }
