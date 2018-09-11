@@ -8,11 +8,15 @@ body{
 #news {
   border-right: 1px solid black;
   display: flex;
-  width: 30%;
+  width: 100%;
   height: auto;
 }
+/* vw viewport width */
+#news-container{
+  max-width: 30vw;
+}
 
-#new-container::after {
+#news-container::after {
 content:"\005f";
 }
 
@@ -26,14 +30,15 @@ content:"\005f";
   height: 30px;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-  max-width: 30%;
+  /*max-width: 30%;*/
   padding: 10px;
 }
 
 #middle {
-  poition: absolute;
-  left: 35%;
-  bottom: 1%
+  position: absolute;
+  left: 31vw;
+  bottom: 3%
+  right: 15.6%;
 }
 
 #quotes {
