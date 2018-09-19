@@ -36,12 +36,23 @@ function getBackground(){
 
 function getTime(){
   let date = new Date();
-  let time = document.createElement("p");
-  let timeContainer = document.querySelector("#time");
-  timeContainer.appendChild(time);
-  time.innnerText = "Time should show here";
+  let hour = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
+
+  min = checkTime(min);
+  sec = checkTime(sec);
+
+  let time = document.querySelector("#clock");
+  time.innnerText = hour+ ":" +min+ ":" +sec;
   // date.toLocaleTimeString();
   //console.log(date.toLocaleTimeString());
+   let t = setTimeout(getTime, 500);
+}
+
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
 }
 
 /*function getNews(){
