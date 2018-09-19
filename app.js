@@ -62,7 +62,7 @@ function getNews(){
 
     let source = document.createElement("p");
     source.classList.add("news-source");
-    source.innnerText = "We live Security";
+    source.textContent = "We live Security";
     newsContainer.appendChild(source);
 
     let length = data["items"].length;
@@ -88,7 +88,7 @@ function getNews(){
   .then(function(data){
         let source = document.createElement("p");
         source.classList.add("news-source");
-        source.innnerText = "Security Affairs";
+        source.textContent = "Security Affairs";
         newsContainer.appendChild(source);
 
         let length = data["items"].length;
@@ -114,7 +114,7 @@ function getNews(){
   .then(function(data){
     let source = document.createElement("p");
     source.classList.add("news-source");
-    source.innnerText = "Dark Reading";
+    source.textContent = "Dark Reading";
     newsContainer.appendChild(source);
 
     let length = data["items"].length;

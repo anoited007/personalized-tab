@@ -1,8 +1,14 @@
 body{
   color: #fff;
-  background:linear-gradient(rgba(185,153,153,.5),rgba(255,0,0,.45)),url('https://picsum.photos/2048/1365/?random'), url('img/bg01.jpg') #2b3137;
-    background-position: center 10%;
+  background:url('https://picsum.photos/2048/1365/?random'), url('img/bg01.jpg') rgba(0,0.0,0.5);
+    background-position: center center;
+    filter: blur(0.2px);
     overflow: hidden;
+    text-shadow:0 1px 5px rgba(0,0,0,.1);
+}
+a{
+    outline:0;
+    text-decoration:none
 }
 
 #news {
@@ -37,6 +43,10 @@ body{
 	border: 2px solid #555555;
 }
 
+.news-source {
+  text-align: center;
+  font-size: 1.2em;
+}
 
 /*#news-container::after {
 content:"\005f";
