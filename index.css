@@ -17,6 +17,7 @@ body{
   max-height: 100vh;
   overflow-y: scroll;
 }
+
 //Styling the scrollbar of the news
 #news-container::-webkit-scrollbar-track
 {
