@@ -1,14 +1,20 @@
 {
-  "manifest_Version" :2,
-  "name" : "My Personalized New Tab",
-  "description" :"The extension customizes my new tab experience",
+  "manifest_version" :2,
+  "name" : "Personalized New Tab",
+  "description" :"Customize new tab experience to stay update on favorite news",
   "version" :"1.0",
   "browser_action" : {
-    "default_icon" : "",
-    "default_popup" : "index.html"
+    "default_title" : "Personalized New Tab"
   },
-  "permissions" :[
-    "newTab"
-  ]
+  "background": {
+     "persistent": false,
+     "scripts": [ "app.js" ]
+  },
+  "chrome_url_overrides": {
+      "newtab": "index.html"
+   },
+
+   
+   "offline_enabled": true
 
 }
