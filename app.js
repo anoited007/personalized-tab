@@ -32,28 +32,7 @@ function getBackground(){
     body.style.backgroundImage = "url(img/bg01.jpg)";
   }
 }
-//getBackground(background);
 
-function getTime(){
-  let date = new Date();
-  let hour = date.getHours();
-  let min = date.getMinutes();
-  let sec = date.getSeconds();
-
-  min = checkTime(min);
-  sec = checkTime(sec);
-
-  let time = document.querySelector("#clock");
-  time.innnerText = hour+ ":" +min+ ":" +sec;
-  // date.toLocaleTimeString();
-  //console.log(date.toLocaleTimeString());
-   let t = setTimeout(getTime, 500);
-}
-
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
 
 /*function getNews(){
   var request = new XMLHttpRequest();
@@ -186,6 +165,28 @@ let value = addTodo.value;
      }
   });
 }
+
+function getTime(){
+  let date = new Date();
+  let hour = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
+
+  min = checkTime(min);
+  sec = checkTime(sec);
+
+  let time = document.querySelector("#clock");
+  time.textContent = hour+ ":" +min+ ":" +sec;
+  // date.toLocaleTimeString();
+  //console.log(date.toLocaleTimeString());
+   let t = setTimeout(getTime, 500);
+}
+
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
 
 todo();
 getQuote();

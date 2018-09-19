@@ -1,8 +1,8 @@
 body{
-  color: #000;
+  color: #fff;
   background:linear-gradient(rgba(185,153,153,.5),rgba(255,0,0,.45)),url('https://picsum.photos/2048/1365/?random'), url('img/bg01.jpg') #2b3137;
     background-position: center 10%;
-
+    overflow: hidden;
 }
 
 #news {
@@ -14,11 +14,32 @@ body{
 /* vw viewport width */
 #news-container{
   max-width: 30vw;
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+//Styling the scrollbar of the news
+#news-container::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
 }
 
-#news-container::after {
-content:"\005f";
+#news-container::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
 }
+
+#news-container::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+	border: 2px solid #555555;
+}
+
+
+/*#news-container::after {
+content:"\005f";
+}*/
 
 /*#container {
   height: 100vh;
@@ -37,18 +58,25 @@ content:"\005f";
 #middle {
   position: absolute;
   left: 31vw;
-  bottom: 3%
+  bottom: 3%;
   right: 15.6%;
+  margin: 0;
+}
+
+#time{
+  font-size: 7em;
+  font-weight: bold;
+  color: #fff;
 }
 
 #quotes {
   font-size: 1em;
 }
 
-#divider {
+/*#divider {
   width: 20px;
   height: 100vh;
-}
+}*/
 
 .todo > span{
   display: inline-block;
