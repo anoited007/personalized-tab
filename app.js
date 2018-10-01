@@ -134,15 +134,18 @@ function getNews(){
   });
 }
 
+var todoList = [];
+
 function todo() {
-const addTodo = document.querySelector("#add-todo");
-const todoContainer = document.querySelector("#todo");
-let value = addTodo.value;
+  const addTodo = document.querySelector("#add-todo");
+  const todoContainer = document.querySelector("#todo");
   addTodo.addEventListener('keyup', (event) => {
   const keyName = event.key;
   if(keyName === "Enter"){
     //&& value.trim().length > 0
     event.preventDefault();
+    let list = document.createElement("div");
+    list.classList.add("list");
     let todo = document.createElement("span");
     todo.classList.add("todo");
     todo.innerText = addTodo.value;
@@ -150,7 +153,6 @@ let value = addTodo.value;
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.onchange = function() {
-      console.log(event.currentTarget)
       if(checkbox.checked){
         checkbox.nextElementSibling.classList.add("done");
       }
@@ -159,9 +161,13 @@ let value = addTodo.value;
       }
     }
 
-    todoContainer.appendChild(checkbox);
-    todoContainer.appendChild(todo);
+    list.appendChild(checkbox);
+    list.appendChild(todo);
+    todoContainer.appendChild(list);
+    todoList.push(list);
+    //console.log(todoList);
     addTodo.value = "";
+    chrome.storage.sync.set({"todoList":todoList});
      }
   });
 }
@@ -189,7 +195,6 @@ function checkTime(i) {
 
 
 todo();
-getQuote();
-//getBackground();
+//getQuote();
 getTime();
 getNews();
