@@ -33,22 +33,62 @@ function getBackground(){
   }
 }
 
+function getTime(){
+  let date = new Date();
+  let hour = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
 
-/*function getNews(){
-  var request = new XMLHttpRequest();
-  request.open('GET', 'http://localhost/extension/rss.xml', true);
-  request.onload(function(response){
-    if(request.status === 200){
-      var data = response
-      request.send();
-      console.log(data);
-    }
-    else{
-      console.log("Error getting data");
+  min = checkTime(min);
+  sec = checkTime(sec);
+
+  let time = document.querySelector("#clock");
+  time.textContent = hour+ ":" +min+ ":" +sec;
+  // date.toLocaleTimeString();
+  //console.log(date.toLocaleTimeString());
+   let t = setTimeout(getTime, 500);
+}
+
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
+function todo() {
+  const addTodo = document.querySelector("#add-todo");
+  const todoContainer = document.querySelector("#todo");
+  addTodo.addEventListener('keyup', (event) => {
+  const keyName = event.key;
+  if(keyName === "Enter"){
+    //&& value.trim().length > 0
+    event.preventDefault();
+    let list = document.createElement("div");
+    list.classList.add("list");
+    let todo = document.createElement("span");
+    todo.classList.add("todo");
+    todo.innerText = addTodo.value;
+    todo.contentEditable = true;
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.onchange = function() {
+      if(checkbox.checked){
+        checkbox.nextElementSibling.classList.add("done");
+      }
+      else {
+        checkbox.nextElementSibling.classList.remove("done");
+      }
     }
 
-});
-}*/
+    list.appendChild(checkbox);
+    list.appendChild(todo);
+    todoContainer.appendChild(list);
+    todoList.push(list);
+    //console.log(todoList);
+    addTodo.value = "";
+    chrome.storage.sync.set({"todoList":todoList});
+     }
+  });
+}
 
 function getNews(){
   //Get news container.
@@ -135,64 +175,6 @@ function getNews(){
 }
 
 var todoList = [];
-
-function todo() {
-  const addTodo = document.querySelector("#add-todo");
-  const todoContainer = document.querySelector("#todo");
-  addTodo.addEventListener('keyup', (event) => {
-  const keyName = event.key;
-  if(keyName === "Enter"){
-    //&& value.trim().length > 0
-    event.preventDefault();
-    let list = document.createElement("div");
-    list.classList.add("list");
-    let todo = document.createElement("span");
-    todo.classList.add("todo");
-    todo.innerText = addTodo.value;
-    todo.contentEditable = true;
-    let checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.onchange = function() {
-      if(checkbox.checked){
-        checkbox.nextElementSibling.classList.add("done");
-      }
-      else {
-        checkbox.nextElementSibling.classList.remove("done");
-      }
-    }
-
-    list.appendChild(checkbox);
-    list.appendChild(todo);
-    todoContainer.appendChild(list);
-    todoList.push(list);
-    //console.log(todoList);
-    addTodo.value = "";
-    chrome.storage.sync.set({"todoList":todoList});
-     }
-  });
-}
-
-function getTime(){
-  let date = new Date();
-  let hour = date.getHours();
-  let min = date.getMinutes();
-  let sec = date.getSeconds();
-
-  min = checkTime(min);
-  sec = checkTime(sec);
-
-  let time = document.querySelector("#clock");
-  time.textContent = hour+ ":" +min+ ":" +sec;
-  // date.toLocaleTimeString();
-  //console.log(date.toLocaleTimeString());
-   let t = setTimeout(getTime, 500);
-}
-
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
-
 
 todo();
 //getQuote();
