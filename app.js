@@ -54,6 +54,8 @@ function checkTime(i) {
     return i;
 }
 
+var todoList = {todos:[]};
+
 function todo() {
   const addTodo = document.querySelector("#add-todo");
   const todoContainer = document.querySelector("#todo");
@@ -82,10 +84,10 @@ function todo() {
     list.appendChild(checkbox);
     list.appendChild(todo);
     todoContainer.appendChild(list);
-    todoList.push(list);
-    //console.log(todoList);
+    todoList.todos.push(list);
+    console.log(todoList);
     addTodo.value = "";
-    chrome.storage.sync.set({"todoList":todoList});
+    //chrome.storage.sync.set({"todoList":todoList});
      }
   });
 }
@@ -173,8 +175,6 @@ function getNews(){
 
   });
 }
-
-var todoList = [];
 
 todo();
 //getQuote();
