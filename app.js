@@ -87,7 +87,7 @@ function todo() {
     todoList.todos.push(list);
     console.log(todoList);
     addTodo.value = "";
-    //chrome.storage.sync.set({"todoList":todoList});
+    chrome.storage.sync.set({"todoList":todoList});
      }
   });
 }
@@ -177,6 +177,6 @@ function getNews(){
 }
 
 todo();
-//getQuote();
+getQuote();
 getTime();
 getNews();
