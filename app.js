@@ -53,7 +53,7 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
 }
-
+//Object to store todo list.
 var todoList = {todos:[]};
 
 function todo() {
@@ -87,7 +87,8 @@ function todo() {
     todoList.todos.push(list);
     console.log(todoList);
     addTodo.value = "";
-    chrome.storage.sync.set({"todoList":todoList});
+    //Store todoList in storage.
+    chrome.storage.local.set({"todoList":todoList});
      }
   });
 }
@@ -177,6 +178,6 @@ function getNews(){
 }
 
 todo();
-getQuote();
+//getQuote();
 getTime();
 getNews();
