@@ -88,7 +88,8 @@ function todo() {
     console.log(todoList);
     addTodo.value = "";
     //Store todoList in storage.
-    chrome.storage.local.set({"todoList":todoList});
+   // chrome.storage.local.set({"todoList":todoList});
+    localStorage.setItem("todoList",JSON.stringify(todoList));
      }
   });
 }
