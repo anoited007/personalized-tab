@@ -3,7 +3,7 @@ body {
   background:linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
-    ), url('https://picsum.photos/2048/1365/?random'), url('img/bg01.jpg') rgba(0,0.0,0.5);
+    ), url('https://picsum.photos/2048/1365/?random'), url('../img/bg01.jpg') rgba(0,0.0,0.5);
     background-position: center center;
     filter: blur(0.2px);
     overflow: hidden;
