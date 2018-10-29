@@ -118,6 +118,6 @@ content:"\005f";
   position: fixed;
   right:1%;
   bottom: 15%;
-  background: rgba(0,0,0,0.5);
+  /*background: rgba(0,0,0,0.5);*/
   color: #fff;
 }

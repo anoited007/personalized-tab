@@ -53,45 +53,6 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
 }
-//Object to store todo list.
-var todoList = {todos:[]};
-
-function todo() {
-  const addTodo = document.querySelector("#add-todo");
-  const todoContainer = document.querySelector("#todo");
-  addTodo.addEventListener('keyup', (event) => {
-  const keyName = event.key;
-  if(keyName === "Enter"){
-    //&& value.trim().length > 0
-    event.preventDefault();
-    let list = document.createElement("div");
-    list.classList.add("list");
-    let todo = document.createElement("span");
-    todo.classList.add("todo");
-    todo.innerText = addTodo.value;
-    todo.contentEditable = true;
-    let checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.onchange = function() {
-      if(checkbox.checked){
-        checkbox.nextElementSibling.classList.add("done");
-      }
-      else {
-        checkbox.nextElementSibling.classList.remove("done");
-      }
-    }
-
-    list.appendChild(checkbox);
-    list.appendChild(todo);
-    todoContainer.appendChild(list);
-    todoList.todos.push(list);
-    console.log(todoList);
-    addTodo.value = "";
-    //Store todoList in storage.
-    chrome.storage.local.set({"todoList":todoList});
-     }
-  });
-}
 
 function getNews(){
   //Get news container.
@@ -177,7 +138,9 @@ function getNews(){
   });
 }
 
-todo();
-//getQuote();
-getTime();
-getNews();
+document.addEventListener("DOMContentLoaded", function() {
+  //todo();
+  //getQuote();
+  getTime();
+  getNews();
+});

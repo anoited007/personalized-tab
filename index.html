@@ -15,7 +15,7 @@
   <div id="container">
     <section class="layout" id="news-container">
       <h1> Security News </h1>
-      <!-- <div id="divider"> </div> -->
+    
     </section>
 
     <section class="layout" id="middle">
@@ -31,9 +31,13 @@
 
     <section class="layout" id="right">
       <div id="todo">
-
+        <ul id="list-items"></ul>
       </div>
-      <input id="add-todo" type="text" placeholder="New Todo"/>
+
+    <form class="add-items">
+      <input type="text" class="form-control" id="todo-list-item" placeholder="What do you need to do?">
+      <button class="add" type="submit">Add to List</button>
+    </form>
     </section>
 
   </div>
