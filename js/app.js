@@ -1,7 +1,7 @@
 
 
 function getQuote(){
-  fetch("http://quotes.rest/qod.json?category=management")
+  fetch("http://quotes.rest/qod.json")
   //fetch("http://localhost/extension/test.json", {mode:'no-cors'})
   .then(function(response){
    return response.json();
@@ -18,6 +18,21 @@ function getQuote(){
   //  console.log(data["contents"]["quotes"][0]["background"])
   });
 
+}
+
+function quote(){
+  fetch("https://talaikis.com/api/quotes/random/")
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    const quotesContainter = document.querySelector("#quotes");
+    let quote = data["quote"];
+    let author = data["author"];
+    let msg = document.createElement("p");
+    msg.textContent = quote;
+    quotesContainter.appendChild(msg);
+  })
 }
 
 function getBackground(){
@@ -140,7 +155,7 @@ function getNews(){
 
 document.addEventListener("DOMContentLoaded", function() {
   //todo();
-  //getQuote();
+  quote();
   getTime();
   getNews();
 });
