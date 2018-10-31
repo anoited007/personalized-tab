@@ -85,6 +85,10 @@ content:"\005f";
   margin: 0;
 }
 
+#dailyVersesWrapper {
+  max-width: 40vw;
+}
+
 #time{
   font-size: 7em;
   font-weight: bold;
