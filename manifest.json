@@ -7,22 +7,19 @@
   "browser_action" : {
     "default_title" : "Personalized New Tab"
   },
-  "background": {
-     "persistent": false,
-     "scripts": [ "jquery-3.3.1.js","js/app.js" ]
-  },
-
-  "content_scripts": [{
-     "js": ["jquery-3.3.1.js"],
-     "matches": ["http://*/*", "https://*/*"]
-   }],
-
+  "content_scripts": [
+  {
+    "matches": ["https://dailyverses.net/*"],
+    "css": ["css/index.css","css/todo.css"],
+    "js": ["js/jquery-3.3.1.js","js/app.js" ]
+  }
+],
+  
   "icons": { "16": "icon16x16.png",
-           "32": "icon32x32.png"},
-
-"content_security_policy": "script-src 'self' https://dailyverses.net; object-src 'self'",
+    "32": "icon32x32.png"},
   "chrome_url_overrides": {
       "newtab": "index.html"
    },
+   "content_security_policy": "script-src 'self' https://dailyverses.net; object-src 'self'",
    "offline_enabled": true
 }
