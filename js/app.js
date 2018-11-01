@@ -154,7 +154,6 @@ function getNews(){
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  //todo();
   quote();
   getTime();
   getNews();
