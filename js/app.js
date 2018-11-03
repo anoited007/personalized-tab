@@ -2,20 +2,14 @@
 
 function getQuote(){
   fetch("http://quotes.rest/qod.json")
-  //fetch("http://localhost/extension/test.json", {mode:'no-cors'})
   .then(function(response){
    return response.json();
    })
    .then(function(data){
-     //get background url
-     //var background = data["contents"]["quotes"][0]["background"];
-     // console.log(background);
-    // console.log(data["contents"]["quotes"][0]);
      const quotesContainter = document.querySelector("#quotes");
      let quote = document.createElement("p");
      quotesContainter.appendChild(quote);
     quote.innerText = data["contents"]["quotes"][0]["quote"];
-  //  console.log(data["contents"]["quotes"][0]["background"])
   });
 
 }
@@ -39,8 +33,6 @@ function getBackground(){
   const background = "https://picsum.photos/2048/1365/?random"
   let body = document.querySelector("body");
   if(background !== null || background !== undefined){
-    // TODO: Fix concatination issue with background.
-    // body.style.backgroundImage = "url("+background+")";
     body.style.backgroundImage = "url(https://picsum.photos/2048/1365/?random)";
   }
   else{
@@ -59,8 +51,6 @@ function getTime(){
 
   let time = document.querySelector("#clock");
   time.textContent = hour+ ":" +min+ ":" +sec;
-  // date.toLocaleTimeString();
-  //console.log(date.toLocaleTimeString());
    let t = setTimeout(getTime, 500);
 }
 
