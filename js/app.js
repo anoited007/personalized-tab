@@ -14,19 +14,19 @@ function getQuote() {
 
 }
 
-function quote() {
-	fetch("https://talaikis.com/api/quotes/random/")
-		.then(function (response) {
-			return response.json();
-		})
-		.then(function (data) {
-			const quotesContainter = document.querySelector("#quotes");
-			let quote = data["quote"];
-			let author = data["author"];
-			let msg = document.createElement("p");
-			msg.textContent = quote;
-			quotesContainter.appendChild(msg);
-		})
+function quote(){
+  fetch("https://www.forbes.com/forbesapi/thought/uri.json?enrich=true&query=1&relatedlimit=1")
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    const quotesContainter = document.querySelector("#quotes");
+    let quote = data["thought"]["quote"];
+    let author = data["author"];
+    let msg = document.createElement("p");
+    msg.textContent = quote;
+    quotesContainter.appendChild(msg);
+  })
 }
 
 function getBackground() {
