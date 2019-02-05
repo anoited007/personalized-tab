@@ -1,4 +1,5 @@
 $(document).ready(getName());
+const cors = "https://cors-anywhere.herokuapp.com/";
 
 function getQuote() {
 	fetch("http://quotes.rest/qod.json")
@@ -15,7 +16,7 @@ function getQuote() {
 }
 
 function quote(){
-  fetch("https://www.forbes.com/forbesapi/thought/uri.json?enrich=true&query=1&relatedlimit=1")
+  fetch(cors+"https://www.forbes.com/forbesapi/thought/uri.json?enrich=true&query=1&relatedlimit=1")
   .then(function(response){
     return response.json();
   })
@@ -145,11 +146,6 @@ function getNews() {
 		});
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-	quote();
-	getTime();
-	getNews();
-});
 
 function getName() {
 	const name = localStorage.getItem("name");
@@ -170,4 +166,8 @@ $("#nameInput").on('keypress', function (e) {
 	}
 });
 
-
+document.addEventListener("DOMContentLoaded", function () {
+	quote();
+	getTime();
+	getNews();
+});
