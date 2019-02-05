@@ -9,33 +9,46 @@ body {
     overflow: hidden;
     text-shadow:0 1px 5px rgba(0,0,0,.1);
 }
+
+h1{
+  text-align: center;
+  color: #a92334;
+
+}
 a {
     outline:0;
+    line-height: 1.7em;
     text-decoration:none;
 }
 a:link {
-    color: #26ce1b;
+    color: #0c1f2c;
 }
 a:visited {
-  color: #cf0f1a;
+  color: #a92334;
 }
 a:hover {
-  color: #fff;
+  color: #050e13;
 }
-#news {
-  border-right: 1px solid black;
-  display: flex;
-  width: 100%;
-  height: auto;
+.news:hover {
+  border-right: 3px solid rgba(0, 0, 0, 0.1);
 }
 /* vw viewport width */
 #news-container{
   max-width: 30vw;
-  max-height: 100vh;
+  max-height: 80vh;
   overflow-y: scroll;
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+  background-color: rgba(255, 255, 255, 0.89);
+  padding: 30px;
+  width: 300px;
+  margin: 50px 10px;
 }
 
-//Styling the scrollbar of the news
+ /*
+ Styling the scrollbar of the news
+ */
+
 #news-container::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -57,15 +70,21 @@ a:hover {
 .news-source {
   text-align: center;
   font-size: 1.2em;
+  color: #0c1f2c;
+
 }
 
 .card {
   display: block;
   cursor: pointer;
-  height: 30px;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0
+  height: fit-content;
   padding: 10px;
+}
+
+.card:hover {
+  background-color: rgba(85, 85, 85, 0.06);
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3), 0 1px 5px 0;
 }
 
 #middle {
@@ -110,5 +129,15 @@ a:hover {
   position: fixed;
   right:1%;
   bottom: 15%;
+  color: #fff;
+}
+
+#nameInput{
+  display: none;
+}
+
+#name{
+  font-size: 3em;
+  font-weight: lighter;
   color: #fff;
 }
