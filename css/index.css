@@ -93,11 +93,16 @@ a:hover {
   bottom: 3%;
   right: 15.6%;
   margin: 0;
+  max-width: 35vw;
 }
 
 .dailyVersesWrapper {
   max-width: 35vw;
   font-size: 1.3em;
+}
+
+.dailyVersesWrapper > a {
+  color: #fff;
 }
 
 #time{
@@ -108,7 +113,7 @@ a:hover {
 
 #quotes {
   font-size: 1.3em;
-  max-width: 40vw;
+  max-width: 35vw;
 }
 
 .todo > span{
@@ -130,6 +135,7 @@ a:hover {
   right:1%;
   bottom: 15%;
   color: #fff;
+  max-width: 30vw;
 }
 
 #nameInput{
