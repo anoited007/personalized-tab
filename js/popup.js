@@ -1,5 +1,5 @@
 $("#newTab").on("click",function () {
-	window.open("chrome://newTab","_blank");
+	window.open("chrome://newTab");
 });
 $("#changeName").on("click",function (){
 	localStorage.removeItem("name");

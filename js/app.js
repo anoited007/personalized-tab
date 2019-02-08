@@ -193,3 +193,11 @@ document.addEventListener("DOMContentLoaded", function () {
 function classStringGen(string){
 	return string.toLowerCase().replace(' ','')
 }
+
+$("#bg").ripples({
+	resolution: 800,
+	dropRadius: 20,
+	perturbance: 0.02,
+	interactive: true,
+	crossOrigin: true
+});

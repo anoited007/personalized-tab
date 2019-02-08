@@ -2,12 +2,13 @@ body {
   color: #fff;
   background:linear-gradient(
       rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
+      rgba(56, 15, 17, 0.51)
     ), url('https://picsum.photos/2048/1365/?random'), url('../img/bg01.jpg') rgba(0,0.0,0.5);
     background-position: center center;
     filter: blur(0.2px);
     overflow: hidden;
     text-shadow:0 1px 5px rgba(0,0,0,.1);
+  margin: 0;
 }
 
 h1{
@@ -35,16 +36,21 @@ a:hover {
 /* vw viewport width */
 #news-container{
   max-width: 30vw;
-  max-height: 80vh;
+  max-height: 76vh;
   overflow-y: scroll;
   border-radius: 10px;
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
-  background-color: rgba(255, 255, 255, 0.89);
+  box-shadow: 3px 3px 20px rgba(5, 14, 19, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
   padding: 30px;
   width: 300px;
   margin: 50px 10px;
+  transition-duration: 1.5s;
 }
 
+#news-container:hover{
+  background-color: rgba(255, 255, 255, 0.9);
+
+}
  /*
  Styling the scrollbar of the news
  */
@@ -82,9 +88,7 @@ a:hover {
 }
 
 .card:hover {
-  background-color: rgba(85, 85, 85, 0.06);
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3), 0 1px 5px 0;
+  background-color: rgba(85, 85, 85, 0.1);
 }
 
 #middle {
@@ -135,8 +139,8 @@ a:hover {
   right: 1%;
   bottom: 8%;
   color: #fff;
-  max-width: 30vw;
-}
+  max-width: 35vw;
+  width: 400px;}
 
 #nameInput{
   display: none;
@@ -154,6 +158,17 @@ a:hover {
 
 .allSources{
   font-size: 14px;
+}
+
+#bg {
+  padding: 1px;
+  width: 100vw;
+  height: 100vh;
+}
+
+#bottom-container{
+  bottom: 10px;
+  position: relative;
 }
 
 
