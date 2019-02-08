@@ -65,17 +65,24 @@ function checkTime(i) {
 function getNews() {
 	//Get news container.
 	const newsContainer = document.querySelector("#news-container");
+	let allSources = document.createElement("ul");
+	allSources.setAttribute("class","allSources");
+	//newsContainer.append(allSources);
 
 	fetch("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.feedburner.com%2Feset%2Fblog")
 		.then(function (response) {
 			return response.json();
 		})
 		.then(function (data) {
-
 			let source = document.createElement("p");
 			source.classList.add("news-source");
 			source.textContent = "We live Security";
 			newsContainer.appendChild(source);
+
+			const li = document.createElement('li');
+			li.innerText = source.textContent;
+			li.setAttribute("class",classStringGen(source.innerText));
+			allSources.append(li);
 
 			let length = data["items"].length;
 			for (let i = 0; i < length; i++) {
@@ -103,6 +110,11 @@ function getNews() {
 			source.textContent = "Security Affairs";
 			newsContainer.appendChild(source);
 
+			const li = document.createElement('li');
+			li.innerText = source.textContent;
+			li.setAttribute("class",classStringGen(source.innerText));
+			allSources.append(li);
+
 			let length = data["items"].length;
 			for (let i = 0; i < length; i++) {
 				let newsItem = document.createElement("div");
@@ -128,6 +140,11 @@ function getNews() {
 			source.classList.add("news-source");
 			source.textContent = "Dark Reading";
 			newsContainer.appendChild(source);
+
+			const li = document.createElement('li');
+			li.innerText = source.textContent;
+			li.setAttribute("class",classStringGen(source.innerText));
+			allSources.append(li);
 
 			let length = data["items"].length;
 			for (let i = 0; i < length; i++) {
@@ -171,3 +188,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	getTime();
 	getNews();
 });
+
+/*Helper Functions*/
+function classStringGen(string){
+	return string.toLowerCase().replace(' ','')
+}
