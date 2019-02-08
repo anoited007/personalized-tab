@@ -1,13 +1,12 @@
 form {
   outline: 0;
-  height: 36px;
   margin-top: 5%;
   border: 3px solid #3b3b3b;
 }
 
 input[type="text"] {
   outline: 0;
-  width: 62%;
+  width: 63.4%;
   height: 32px;
   border: none;
   font-size: 18px;
