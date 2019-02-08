@@ -1,0 +1,33 @@
+body{
+	height: auto;
+	width: 250px;
+	background-color: #FFF;
+	font-size: 14px;
+}
+.popup-container{
+	border: 1px solid #CACACA;
+	box-sizing: border-box;
+	overflow: hidden;
+	width: content-box;
+}
+
+.popup-container li {
+	list-style: none;
+	line-height: 40px;
+	height: 40px;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-decoration: none;
+	color: #000;
+	overflow-y: visible;
+}
+
+.popup-container li a {
+	text-decoration: none;
+}
+
+
