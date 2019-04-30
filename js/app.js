@@ -1,7 +1,7 @@
 $(document).ready(getName());
 const cors = "https://cors-anywhere.herokuapp.com/";
 
-function getQuote() {
+/*function getQuote() {
 	fetch("http://quotes.rest/qod.json")
 		.then(function (response) {
 			return response.json();
@@ -13,7 +13,7 @@ function getQuote() {
 			quote.innerText = data["contents"]["quotes"][0]["quote"];
 		});
 
-}
+} */
 
 function quote(){
   fetch(cors+"https://www.forbes.com/forbesapi/thought/uri.json?enrich=true&query=1&relatedlimit=1")

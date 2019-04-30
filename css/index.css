@@ -94,7 +94,7 @@ a:hover {
 #middle {
   position: absolute;
   left: 31vw;
-  bottom: 3%;
+  bottom: 10%;
   right: 15.6%;
   margin: 0;
   max-width: 35vw;
@@ -137,7 +137,7 @@ a:hover {
 #right {
   position: fixed;
   right: 1%;
-  bottom: 8%;
+  bottom: 10%;
   color: #fff;
   max-width: 35vw;
   width: 400px;}
@@ -170,5 +170,3 @@ a:hover {
   bottom: 10px;
   position: relative;
 }
-
-
