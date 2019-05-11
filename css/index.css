@@ -120,6 +120,10 @@ a:hover {
   max-width: 35vw;
 }
 
+#author > span {
+  color: #a92334;
+}
+
 .todo > span{
   display: inline-block;
 }

@@ -1,21 +1,27 @@
 $(document).ready(getName());
 const cors = "https://cors-anywhere.herokuapp.com/";
 
-/*function getQuote() {
-	fetch("http://quotes.rest/qod.json")
+function getQuote() {
+	fetch("http://quotes.rest/qod")
 		.then(function (response) {
 			return response.json();
 		})
 		.then(function (data) {
+      //console.log(data);
 			const quotesContainter = document.querySelector("#quotes");
 			let quote = document.createElement("p");
 			quotesContainter.appendChild(quote);
 			quote.innerText = data["contents"]["quotes"][0]["quote"];
+      let author = document.createElement("p");
+      author.innerHTML = "Author:"+"<span>"+ data["contents"]["quotes"][0]["author"]+"</span>";
+      //author.setAttribute("id","author");
+      author.id = "author"
+      quote.appendChild(author);
 		});
+    
+}
 
-} */
-
-function quote(){
+/* function quote(){
   fetch(cors+"https://www.forbes.com/forbesapi/thought/uri.json?enrich=true&query=1&relatedlimit=1")
   .then(function(response){
     return response.json();
@@ -28,7 +34,7 @@ function quote(){
     msg.textContent = quote;
     quotesContainter.appendChild(msg);
   })
-}
+} */
 
 function getBackground() {
 	const background = "https://picsum.photos/2048/1365/?random"
@@ -184,7 +190,7 @@ $("#nameInput").on('keypress', function (e) {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-	quote();
+	getQuote();
 	getTime();
 	getNews();
 });
