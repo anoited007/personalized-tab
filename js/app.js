@@ -1,4 +1,7 @@
-$(document).ready(getName());
+$(document).ready(function () {
+	getName()
+});
+
 const cors = "https://cors-anywhere.herokuapp.com/";
 
 function getQuote() {
@@ -18,7 +21,7 @@ function getQuote() {
       author.id = "author"
       quote.appendChild(author);
 		});
-    
+
 }
 
 /* function quote(){
