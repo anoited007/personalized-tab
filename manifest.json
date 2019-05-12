@@ -2,8 +2,9 @@
   "manifest_version" :2,
   "name" : "Personalized New Tab",
   "description" :"Customize new tab experience to stay update on favorite news",
-  "permissions": ["storage"],
+  "permissions": ["storage","tabs"],
   "version" :"1.0",
+
   "browser_action" : {
     "default_title" : "Personalized New Tab",
     "default_popup" : "popup.html"
