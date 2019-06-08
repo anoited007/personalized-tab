@@ -4,6 +4,17 @@ $(document).ready(function () {
 
 const cors = "https://cors-anywhere.herokuapp.com/";
 
+	$.ajax({
+		url: 'https://dailyverses.net/getdailyverse.ashx?language=niv&isdirect=1&url=' + window.location.hostname,
+		dataType: 'JSONP',
+		success: function (json) {
+			$(".dailyVersesWrapper").prepend(json.html);
+			localStorage.setItem("previousBibleQuote",json.html)
+		},
+		error: function (request, status, error) {
+			$(".dailyVersesWrapper").prepend(localStorage.getItem("previousBibleQuote"));}
+	});
+
 function getQuote() {
 	fetch("http://quotes.rest/qod")
 		.then(function (response) {
@@ -84,104 +95,104 @@ function getNews() {
 	//Get news container.
 	const newsContainer = document.querySelector("#news-container");
 	let allSources = document.createElement("ul");
-	allSources.setAttribute("class","allSources");
+	allSources.setAttribute("class", "allSources");
 	//newsContainer.append(allSources);
 
 	fetch("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.feedburner.com%2Feset%2Fblog")
-		.then(function (response) {
-			return response.json();
-		})
-		.then(function (data) {
-			let source = document.createElement("p");
-			source.classList.add("news-source");
-			source.textContent = "We live Security";
-			newsContainer.appendChild(source);
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (data) {
+				let source = document.createElement("p");
+				source.classList.add("news-source");
+				source.textContent = "We live Security";
+				newsContainer.appendChild(source);
 
-			const li = document.createElement('li');
-			li.innerText = source.textContent;
-			li.setAttribute("class",classStringGen(source.innerText));
-			allSources.append(li);
+				const li = document.createElement('li');
+				li.innerText = source.textContent;
+				li.setAttribute("class", classStringGen(source.innerText));
+				allSources.append(li);
 
-			let length = data["items"].length;
-			for (let i = 0; i < length; i++) {
-				let newsItem = document.createElement("div");
-				newsItem.classList.add("news", "card");
-				let title = data["items"][i]["title"]
-				let url = data["items"][i]["link"];
-				let link = document.createElement("a");
-				link.href = url;
-				link.innerHTML = title;
-				link.rel = "noreferrer noopener"
-				link.target = "_blank";
-				newsItem.appendChild(link);
-				newsContainer.appendChild(newsItem);
-			}
+				let length = data["items"].length;
+				for (let i = 0; i < length; i++) {
+					let newsItem = document.createElement("div");
+					newsItem.classList.add("news", "card");
+					let title = data["items"][i]["title"]
+					let url = data["items"][i]["link"];
+					let link = document.createElement("a");
+					link.href = url;
+					link.innerHTML = title;
+					link.rel = "noreferrer noopener"
+					link.target = "_blank";
+					newsItem.appendChild(link);
+					newsContainer.appendChild(newsItem);
+				}
 
-		});
+			});
 
 	fetch("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fsecurityaffairs.co%2Fwordpress%2Ffeed")
-		.then(function (response) {
-			return response.json();
-		})
-		.then(function (data) {
-			let source = document.createElement("p");
-			source.classList.add("news-source");
-			source.textContent = "Security Affairs";
-			newsContainer.appendChild(source);
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (data) {
+				let source = document.createElement("p");
+				source.classList.add("news-source");
+				source.textContent = "Security Affairs";
+				newsContainer.appendChild(source);
 
-			const li = document.createElement('li');
-			li.innerText = source.textContent;
-			li.setAttribute("class",classStringGen(source.innerText));
-			allSources.append(li);
+				const li = document.createElement('li');
+				li.innerText = source.textContent;
+				li.setAttribute("class", classStringGen(source.innerText));
+				allSources.append(li);
 
-			let length = data["items"].length;
-			for (let i = 0; i < length; i++) {
-				let newsItem = document.createElement("div");
-				newsItem.classList.add("news", "card");
-				let title = data["items"][i]["title"]
-				let url = data["items"][i]["link"];
-				let link = document.createElement("a");
-				link.href = url;
-				link.innerHTML = title;
-				link.rel = "noreferrer noopener"
-				link.target = "_blank";
-				newsItem.appendChild(link);
-				newsContainer.appendChild(newsItem);
-			}
+				let length = data["items"].length;
+				for (let i = 0; i < length; i++) {
+					let newsItem = document.createElement("div");
+					newsItem.classList.add("news", "card");
+					let title = data["items"][i]["title"]
+					let url = data["items"][i]["link"];
+					let link = document.createElement("a");
+					link.href = url;
+					link.innerHTML = title;
+					link.rel = "noreferrer noopener"
+					link.target = "_blank";
+					newsItem.appendChild(link);
+					newsContainer.appendChild(newsItem);
+				}
 
-		});
+			});
 
 	fetch("https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.darkreading.com%2Frss_simple.asp")
-		.then(function (response) {
-			return response.json();
-		})
-		.then(function (data) {
-			let source = document.createElement("p");
-			source.classList.add("news-source");
-			source.textContent = "Dark Reading";
-			newsContainer.appendChild(source);
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (data) {
+				let source = document.createElement("p");
+				source.classList.add("news-source");
+				source.textContent = "Dark Reading";
+				newsContainer.appendChild(source);
 
-			const li = document.createElement('li');
-			li.innerText = source.textContent;
-			li.setAttribute("class",classStringGen(source.innerText));
-			allSources.append(li);
+				const li = document.createElement('li');
+				li.innerText = source.textContent;
+				li.setAttribute("class", classStringGen(source.innerText));
+				allSources.append(li);
 
-			let length = data["items"].length;
-			for (let i = 0; i < length; i++) {
-				let newsItem = document.createElement("div");
-				newsItem.classList.add("news", "card");
-				let title = data["items"][i]["title"]
-				let url = data["items"][i]["link"];
-				let link = document.createElement("a");
-				link.href = url;
-				link.innerHTML = title;
-				link.rel = "noreferrer noopener"
-				link.target = "_blank";
-				newsItem.appendChild(link);
-				newsContainer.appendChild(newsItem);
-			}
+				let length = data["items"].length;
+				for (let i = 0; i < length; i++) {
+					let newsItem = document.createElement("div");
+					newsItem.classList.add("news", "card");
+					let title = data["items"][i]["title"]
+					let url = data["items"][i]["link"];
+					let link = document.createElement("a");
+					link.href = url;
+					link.innerHTML = title;
+					link.rel = "noreferrer noopener"
+					link.target = "_blank";
+					newsItem.appendChild(link);
+					newsContainer.appendChild(newsItem);
+				}
 
-		});
+			});
 }
 
 
@@ -211,8 +222,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /*Helper Functions*/
-function classStringGen(string){
-	return string.toLowerCase().replace(' ','')
+function classStringGen(string) {
+	return string.toLowerCase().replace(' ', '')
 }
 
 $("#bg").ripples({
