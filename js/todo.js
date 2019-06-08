@@ -1,11 +1,4 @@
 $(document).ready(function () {
-    $.ajax({
-    url:'https://dailyverses.net/getdailyverse.ashx?language=niv&isdirect=1&url=' + window.location.hostname,
-    dataType: 'JSONP',
-    success:function(json){
-    $(".dailyVersesWrapper").prepend(json.html);
-    }
-    });
 
   $('#list-items').html(localStorage.getItem('listItems'));
 
