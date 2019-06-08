@@ -2,8 +2,9 @@
   "manifest_version" :2,
   "name" : "Personalized New Tab",
   "description" :"Customize new tab experience to stay update on favorite news",
-  "permissions": ["storage"],
+  "permissions": ["storage","tabs"],
   "version" :"1.0",
+
   "browser_action" : {
     "default_title" : "Personalized New Tab",
     "default_popup" : "popup.html"
@@ -12,10 +13,10 @@
   {
     "matches": ["https://dailyverses.net/*"],
     "css": ["css/index.css","css/todo.css"],
-    "js": ["js/jquery-3.3.1.js","js/app.js" ]
+    "js": ["js/jquery-3.3.1.js","js/app.js", "js/purify.js" ]
   }
 ],
-  
+
   "icons": { "16": "icon16x16.png",
     "32": "icon32x32.png"},
   "chrome_url_overrides": {

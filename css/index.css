@@ -1,9 +1,13 @@
 body {
   color: #fff;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 27%, rgba(121,9,70,0.8) 53%, rgba(0,212,255,1) 75%);
+  background: -webkit-linear-gradient(to right, rgba(2,0,36,1) 27%, rgba(121,9,70,0.8) 53%, rgba(0,212,255,1) 75%);
+  background: linear-gradient(to right, rgba(2,0,36,1) 27%, rgba(121,9,70,0.8) 53%, rgba(0,212,255,1) 75%);
+
   background:linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(56, 15, 17, 0.51)
-    ), url('https://picsum.photos/2048/1365/?random'), url('../img/bg01.jpg') rgba(0,0.0,0.5);
+    ), url('https://picsum.photos/2048/1365/?random'), rgba(0,0.0,0.5);
     background-position: center center;
     filter: blur(0.2px);
     overflow: hidden;
@@ -94,7 +98,7 @@ a:hover {
 #middle {
   position: absolute;
   left: 31vw;
-  bottom: 3%;
+  bottom: 10%;
   right: 15.6%;
   margin: 0;
   max-width: 35vw;
@@ -120,6 +124,10 @@ a:hover {
   max-width: 35vw;
 }
 
+#author > span {
+  color: #a92334;
+}
+
 .todo > span{
   display: inline-block;
 }
@@ -137,7 +145,7 @@ a:hover {
 #right {
   position: fixed;
   right: 1%;
-  bottom: 8%;
+  bottom: 10%;
   color: #fff;
   max-width: 35vw;
   width: 400px;}
@@ -170,5 +178,3 @@ a:hover {
   bottom: 10px;
   position: relative;
 }
-
-

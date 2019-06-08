@@ -1,21 +1,38 @@
-$(document).ready(getName());
+$(document).ready(function () {
+	getName()
+});
+
 const cors = "https://cors-anywhere.herokuapp.com/";
 
 function getQuote() {
-	fetch("http://quotes.rest/qod.json")
+	fetch("http://quotes.rest/qod")
 		.then(function (response) {
 			return response.json();
 		})
 		.then(function (data) {
+      //console.log(data);
 			const quotesContainter = document.querySelector("#quotes");
 			let quote = document.createElement("p");
 			quotesContainter.appendChild(quote);
 			quote.innerText = data["contents"]["quotes"][0]["quote"];
+      let author = document.createElement("p");
+			let authorName = data["contents"]["quotes"][0]["author"];
+			let link = document.createElement("a");
+			let baseURL = "https://www.google.com/search?q="
+			link.href = baseURL + encodeURIComponent(authorName);
+    	link.text = authorName;
+			let authorContent = "<span>" + link + "</span>";
+			authorContent = DOMPurify.sanitize(authorContent);
+			console.log(link);
+			author.innerHTML = "Author: " + authorContent ;
+      //author.setAttribute("id","author");
+      author.id = "author"
+      quote.appendChild(author);
 		});
 
 }
 
-function quote(){
+/* function quote(){
   fetch(cors+"https://www.forbes.com/forbesapi/thought/uri.json?enrich=true&query=1&relatedlimit=1")
   .then(function(response){
     return response.json();
@@ -28,9 +45,9 @@ function quote(){
     msg.textContent = quote;
     quotesContainter.appendChild(msg);
   })
-}
+} */
 
-function getBackground() {
+/*function getBackground() {
 	const background = "https://picsum.photos/2048/1365/?random"
 	let body = document.querySelector("body");
 	if (background !== null || background !== undefined) {
@@ -38,7 +55,7 @@ function getBackground() {
 	} else {
 		body.style.backgroundImage = "url(img/bg01.jpg)";
 	}
-}
+}*/
 
 function getTime() {
 	let date = new Date();
@@ -93,6 +110,7 @@ function getNews() {
 				let link = document.createElement("a");
 				link.href = url;
 				link.innerHTML = title;
+				link.rel = "noreferrer noopener"
 				link.target = "_blank";
 				newsItem.appendChild(link);
 				newsContainer.appendChild(newsItem);
@@ -124,6 +142,7 @@ function getNews() {
 				let link = document.createElement("a");
 				link.href = url;
 				link.innerHTML = title;
+				link.rel = "noreferrer noopener"
 				link.target = "_blank";
 				newsItem.appendChild(link);
 				newsContainer.appendChild(newsItem);
@@ -155,6 +174,7 @@ function getNews() {
 				let link = document.createElement("a");
 				link.href = url;
 				link.innerHTML = title;
+				link.rel = "noreferrer noopener"
 				link.target = "_blank";
 				newsItem.appendChild(link);
 				newsContainer.appendChild(newsItem);
@@ -184,7 +204,7 @@ $("#nameInput").on('keypress', function (e) {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-	quote();
+	getQuote();
 	getTime();
 	getNews();
 });
