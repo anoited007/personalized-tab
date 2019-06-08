@@ -16,6 +16,7 @@ function getQuote() {
 			quotesContainter.appendChild(quote);
 			quote.innerText = data["contents"]["quotes"][0]["quote"];
       let author = document.createElement("p");
+			author.id = "author"
       author.innerText = "Author: "
 			let authorName = data["contents"]["quotes"][0]["author"];
 			let link = document.createElement("a");
@@ -23,12 +24,10 @@ function getQuote() {
 			link.target ="_blank"
 			let baseURL = "https://www.google.com/search?q="
 			link.href = baseURL + encodeURIComponent(authorName);
-			let authorContent = "<span>" + link + "</span>";
-			authorContent = DOMPurify.sanitize(authorContent);
-			console.log(link);
 			link.innerText = authorName ;
-			author.appendChild(link);
-      author.id = "author"
+			let authorContent = document.createElement("span");
+			authorContent.appendChild(link);
+			author.appendChild(authorContent);
       quote.appendChild(author);
 		});
 
