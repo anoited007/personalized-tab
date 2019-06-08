@@ -17,36 +17,30 @@ const cors = "https://cors-anywhere.herokuapp.com/";
 
 function getQuote() {
 	fetch("http://quotes.rest/qod")
-			.then(function (response) {
-				return response.json();
-			})
-			.then(function (data) {
-				//console.log(data);
-				const quotesContainter = document.querySelector("#quotes");
-				let quote = document.createElement("p");
-				quotesContainter.appendChild(quote);
-				quote.innerText = data["contents"]["quotes"][0]["quote"];
-				let author = document.createElement("p");
-				author.innerText = "Author: "
-				let authorName = data["contents"]["quotes"][0]["author"];
-				let link = document.createElement("a");
-				link.rel = "noopener noreferrer";
-				link.target = "_blank"
-				let baseURL = "https://www.google.com/search?q="
-				link.href = baseURL + encodeURIComponent(authorName);
-				let authorContent = "<span>" + link + "</span>";
-				authorContent = DOMPurify.sanitize(authorContent);
-				link.innerText = authorName;
-				author.appendChild(link);
-				author.id = "author"
-				quote.appendChild(author);
-				localStorage.setItem("previousQuote", quote.innerHTML);
-			}).catch(function (reason) {
-		const quotesContainter = document.querySelector("#quotes");
-		let quote = document.createElement("p");
-		quote.innerHTML = DOMPurify.sanitize(localStorage.getItem("previousQuote"));
-		quotesContainter.appendChild(quote);
-	});
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+      //console.log(data);
+			const quotesContainter = document.querySelector("#quotes");
+			let quote = document.createElement("p");
+			quotesContainter.appendChild(quote);
+			quote.innerText = data["contents"]["quotes"][0]["quote"];
+      let author = document.createElement("p");
+			author.id = "author"
+      author.innerText = "Author: "
+			let authorName = data["contents"]["quotes"][0]["author"];
+			let link = document.createElement("a");
+			link.rel = "noopener noreferrer";
+			link.target ="_blank"
+			let baseURL = "https://www.google.com/search?q="
+			link.href = baseURL + encodeURIComponent(authorName);
+			link.innerText = authorName ;
+			let authorContent = document.createElement("span");
+			authorContent.appendChild(link);
+			author.appendChild(authorContent);
+      quote.appendChild(author);
+		});
 
 }
 

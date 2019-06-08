@@ -124,7 +124,7 @@ a:hover {
   max-width: 35vw;
 }
 
-#author > span {
+#author > span > a{
   color: #a92334;
 }
 
