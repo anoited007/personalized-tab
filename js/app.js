@@ -198,6 +198,7 @@ function getNews() {
 
 function getName() {
 	const name = localStorage.getItem("name");
+
 	if (name != null) {
 		const p = document.getElementById("name");
 		p.innerText = p.innerText + " " + name;

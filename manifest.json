@@ -4,6 +4,8 @@
   "description" :"Customize new tab experience to stay update on favorite news",
   "permissions": ["storage","tabs"],
   "version" :"1.0",
+  "options_page": "options.html",
+
 
   "browser_action" : {
     "default_title" : "Personalized New Tab",
