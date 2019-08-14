@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head><title>Settings</title></head>
+<link rel="stylesheet" type="text/css" href="css/settings.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<body>
+<div class="settings-container">
+    <div class="settings">
+        <h2>News to display</h2>
+        <div class="box">
+            <select id="news">
+                <option value="all">All</option>
+                <option value="africa">Africa</option>
+                <option value="north-africa">North Africa</option>
+                <option value="east-africa">East Africa</option>
+                <option value="west-africa">West Africa</option>
+                <option value="central-africa">Central Africa</option>
+                <option value="southern-africa">Southern Africa</option>
+                <option value="security">Security</option>
+            </select>
+        </div>
+        <br><br>
+        <label class="container" id="cache">Cache News
+            <input type="checkbox" checked="checked">
+            <span class="checkmark"></span>
+        </label>
+        <br><br>
+        <label>
+            <input placeholder="Full Name" type="text" id="username"/>
+        </label>
+        <br>
+        <div id="status"></div>
+        <br>
+        <button class="btn" id="save">Save</button>
+
+    </div>
+</div>
+
+
+<script src="js/options.js"></script>
+</body>
+</html>
