@@ -2,12 +2,10 @@ body {
   color: #fff;
   background: linear-gradient(90deg, rgba(2,0,36,1) 27%, rgba(121,9,70,0.8) 53%, rgba(0,212,255,1) 75%);
   background: -webkit-linear-gradient(to right, rgba(2,0,36,1) 27%, rgba(121,9,70,0.8) 53%, rgba(0,212,255,1) 75%);
-  background: linear-gradient(to right, rgba(2,0,36,1) 27%, rgba(121,9,70,0.8) 53%, rgba(0,212,255,1) 75%);
-
-  background:linear-gradient(
+  background:  linear-gradient(
       rgba(0, 0, 0, 0.5),
-      rgba(56, 15, 17, 0.51)
-    ), url('https://picsum.photos/2048/1365/?random'), rgba(0,0.0,0.5);
+      rgba(56, 15, 17, 0.5)
+    ), url('https://picsum.photos/2048/1365/?random'),url('bg.jpeg');
     background-position: center center;
     filter: blur(0.2px);
     overflow: hidden;
@@ -40,20 +38,20 @@ a:hover {
 /* vw viewport width */
 #news-container{
   max-width: 30vw;
-  max-height: 76vh;
+  max-height: 80vh;
   overflow-y: scroll;
   border-radius: 10px;
   box-shadow: 3px 3px 20px rgba(5, 14, 19, 0.5);
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 1);
   padding: 30px;
-  width: 300px;
-  margin: 50px 10px;
+  width: 25vw;
+  margin: 50px 20px;
   transition-duration: 1.5s;
+  opacity: 0.3;
 }
 
 #news-container:hover{
-  background-color: rgba(255, 255, 255, 0.9);
-
+  opacity: 0.95;
 }
  /*
  Styling the scrollbar of the news
@@ -97,7 +95,7 @@ a:hover {
 
 #middle {
   position: absolute;
-  left: 31vw;
+  left: 33vw;
   bottom: 10%;
   right: 15.6%;
   margin: 0;
@@ -147,7 +145,7 @@ a:hover {
   right: 1%;
   bottom: 10%;
   color: #fff;
-  max-width: 35vw;
+  max-width: 33vw;
   width: 400px;}
 
 #nameInput{
@@ -178,3 +176,4 @@ a:hover {
   bottom: 10px;
   position: relative;
 }
+

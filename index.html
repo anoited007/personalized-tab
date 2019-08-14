@@ -3,65 +3,54 @@
 <meta charset="utf-8">
 <head>
 
-	<title> My Personalized New Tab </title>
-	<link rel="stylesheet" type="text/css" href="css/todo.css"/>
-	<link rel="stylesheet" type="text/css" href="css/index.css"/>
-	<script src="js/jquery-3.3.1.js"></script>
-	<script src="js/purify.js"></script>
-	<script src="js/todo.js"></script>
-	<script src="js/jquery.ripples.js"></script>
-	<script defer src="js/app.js"></script>
+    <title> My Personalized New Tab </title>
+    <link rel="stylesheet" type="text/css" href="css/todo.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/purify.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/jquery.ripples.js"></script>
+    <script defer src="js/app.js"></script>
 
 </head>
 <body>
 <main id="bg">
-	<div id="container">
-		<section class="layout" id="news-container">
-			<h1> Security News </h1>
-		</section>
+    <div id="container">
+        <section class="layout" id="news-container">
+            <h1> Security News </h1>
+        </section>
 
-		<section class="layout" id="middle">
-			<div>
-				<input id="nameInput" type="text" class="form-control"
-				       placeholder="Enter your name and press the Enter Key">
-				<p id="name">Welcome</p>
-			</div>
-			<div class="dailyVersesWrapper">
-				<div class="dailyVerses linkToWebsite"></div>
-			</div>
+        <section class="layout" id="middle">
+            <div>
+                <input id="nameInput" type="text" class="form-control"
+                       placeholder="Enter your name and press the Enter Key">
+                <p id="name">Welcome</p>
+            </div>
+            <div class="dailyVersesWrapper">
+                <div class="dailyVerses linkToWebsite"></div>
+            </div>
 
-			<div id="bottom-container">
-				<div id="time">
-					<span id="clock"></span>
-				</div>
-				<div id="quotes"></div>
+            <div id="bottom-container">
+                <div id="time">
+                    <span id="clock"></span>
+                </div>
+                <div id="quotes"></div>
 
-			</div>
-		</section>
+            </div>
+        </section>
 
-		<section class="layout" id="right">
-			<div id="todo">
-				<ul id="list-items"></ul>
-			</div>
+        <section class="layout" id="right">
+            <div id="todo">
+                <ul id="list-items"></ul>
+            </div>
 
-			<form class="add-items">
-				<input type="text" class="form-control" id="todo-list-item" placeholder="What do you need to do?">
-				<button class="add" type="submit">Add to List</button>
-			</form>
-			<div>
-				<div>
-					<svg height="20" class="octicon octicon-code v-align-middle fill-gray mr-1" aria-label="code" viewBox="0 0 14 16" version="1.1" width="17" role="img"><path d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
-					with
-					<svg height="20" class="octicon octicon-heart v-align-middle fill-gray mx-1" aria-label="love" viewBox="0 0 12 16" version="1.1" width="15" role="img"><path d="M11.2 3c-.52-.63-1.25-.95-2.2-1-.97 0-1.69.42-2.2 1-.51.58-.78.92-.8 1-.02-.08-.28-.42-.8-1-.52-.58-1.17-1-2.2-1-.95.05-1.69.38-2.2 1-.52.61-.78 1.28-.8 2 0 .52.09 1.52.67 2.67C1.25 8.82 3.01 10.61 6 13c2.98-2.39 4.77-4.17 5.34-5.33C11.91 6.51 12 5.5 12 5c-.02-.72-.28-1.39-.8-2.02V3z"></path></svg>
-					by Emmanuel Sackey <link rel="icon" type="image/x-icon" href="favicon.ico">
-          <svg height="20" class="octicon octicon-mark-github v-align-middle fill-gray mx-1" aria-label="Personalize Tab" viewBox="0 0 16 16" version="1.1" width="20" role="img"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
-      and
-					<a href="https://github.com/anoited007/personalized-tab/graphs/contributors" rel="noopener noreferrer" target="_blank" class="text-gray">friends</a>
-				</div>
-			</div>
-		</section>
+            <form class="add-items">
+                <input type="text" class="form-control" id="todo-list-item" placeholder="What do you need to do?">
+                <button class="add" type="submit">Add to List</button>
+            </form>
+        </section>
 
-	</div>
+    </div>
 </main>
 </body>
 </html>
