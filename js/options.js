@@ -26,8 +26,6 @@ function restore_options() {
         cache: true,
         username: null
     }, function (items) {
-        document.getElementById('news').value = items.news;
-        document.getElementById('cache').value = items.cache;
         document.getElementById('username').value = items.username;
     });
 }
@@ -37,7 +35,6 @@ document.getElementById('save').addEventListener('click',
     save_options);
 
 function reset() {
-    // Use default value color = 'red' and likesColor = true.
     chrome.storage.sync.get({
         news: 'security',
         cache: true,

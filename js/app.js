@@ -13,10 +13,6 @@ var links = [
         link: 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.darkreading.com%2Frss_simple.asp',
         enabled: true
     },
-    {
-        link: 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Frssmix.com%2Fu%2F8856269%2Frss.xml',
-        enabled: true
-    }
 ];
 
 $(document).ready(function () {
@@ -98,6 +94,7 @@ function getNews() {
     const newsContainer = document.querySelector("#news-container");
     let allSources = document.createElement("ul");
     allSources.setAttribute("class", "allSources");
+    var url;
 
     chrome.storage.sync.get({
         news: 'security',
@@ -105,7 +102,9 @@ function getNews() {
     }, function (items) {
         news = items.news;
         cache = items.cache;
-        console.log(items);
+        if (news !== 'security') {
+            $('#title').text('Love for Africa');
+        }
         if (news === 'all' || news === 'security') {
             var index;
             for (index in links) {
@@ -117,10 +116,32 @@ function getNews() {
                         bindToView(newsContainer, allSources, convertResponse(data));
                     });
             }
+        }else{
+
+        switch (news) {
+            case 'africa':
+                url = 'http://rssmix.com/u/8858077/rss.xml';
+                break;
+            case 'east-africa':
+                url = 'http://rssmix.com/u/8857989/rss.xml';
+                break;
+            case 'west-africa':
+                url = 'http://rssmix.com/u/8858044/rss.xml';
+                break;
+            case 'central-africa':
+                url = 'http://rssmix.com/u/8858047/rss.xml';
+                break;
+            case 'southern-africa':
+                url = 'http://rssmix.com/u/8858058/rss.xml';
+                break;
+            case 'north-africa':
+                url = 'http://rssmix.com/u/8858068/rss.xml';
+                break;
+            default:
+                url = 'http://rssmix.com/u/8858077/rss.xml';
         }
 
-        if (news == 'africa') {
-            $.get(cors + 'https://rssmix.com/u/8856159/rss.xml', function (responseText) {
+            $.get(cors + url, function (responseText) {
                 console.log(responseText);
                 var data = xmlToJson(responseText);
                 console.log(data)
@@ -143,7 +164,8 @@ function getName() {
             document.getElementById("nameInput").style.display = "none";
         } else {
             document.getElementById("nameInput").style.display = "block";
-        }    });
+        }
+    });
 
 
 }
