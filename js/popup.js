@@ -7,5 +7,4 @@ $(function () {
 	$("#changeName").on("click",function (){
 		localStorage.removeItem("name");
 	});
-
 });

@@ -5,7 +5,7 @@ body {
   background:  linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(56, 15, 17, 0.5)
-    ), url('https://picsum.photos/2048/1365/?random'),url('bg.jpeg');
+    ), url('https://picsum.photos/2048/1365/?random'),url('../images/bg.jpeg');
     background-position: center center;
     filter: blur(0.2px);
     overflow: hidden;

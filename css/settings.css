@@ -11,7 +11,7 @@ body {
 
 .settings {
     padding: 10%;
-    //background-color: rgba(169, 35, 52, 0.8);
+    background-color: rgba(169, 35, 52, 0.8);
     background-color: rgba(12, 31, 44, 0.8);
     width: 40vw;
     height: 40vh;

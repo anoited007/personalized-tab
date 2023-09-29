@@ -26,48 +26,52 @@ function NewsDetail(source, data) {
 
 const cors = "https://cors-anywhere.herokuapp.com/";
 
-$.ajax({
-    url: 'https://dailyverses.net/getdailyverse.ashx?language=niv&isdirect=1&url=' + window.location.hostname,
-    dataType: 'JSONP',
-    success: function (json) {
-        $(".dailyVersesWrapper").prepend(json.html);
-        localStorage.setItem("previousBibleQuote", json.html)
-    },
-    error: function (request, status, error) {
+// Todo: implement caching and also check to quote 24 hour later
+fetch('https://beta.ourmanna.com/api/v1/get?format=json&order=daily')
+    .then((response) => {
+        // Check if the response status is OK (status code 200)
+        if (response.ok) {
+            // Parse the JSON response
+            return response.json();
+        } else {
+            throw new Error('Failed to fetch data');
+        }
+    })
+    .then((data) => {
+        $(".dailyVersesWrapper").prepend(data.verse.details['text'] + ' ' + data.verse.details['reference'] + ' ' + data.verse.details['version']);
+    })
+    .catch((error) => {
         $(".dailyVersesWrapper").prepend(localStorage.getItem("previousBibleQuote"));
-    }
-});
+    });
 
 function getQuote() {
-    fetch("http://quotes.rest/qod")
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            //console.log(data);
-            const quotesContainter = document.querySelector("#quotes");
-            let quote = document.createElement("p");
-            quotesContainter.appendChild(quote);
-            quote.innerText = data["contents"]["quotes"][0]["quote"];
-            let author = document.createElement("p");
-            author.id = "author"
-            author.innerText = "Author: "
-            let authorName = data["contents"]["quotes"][0]["author"];
-            let link = document.createElement("a");
-            link.rel = "noopener noreferrer";
-            link.target = "_blank"
-            let baseURL = "https://www.google.com/search?q="
-            link.href = baseURL + encodeURIComponent(authorName);
-            link.innerText = authorName;
-            let authorContent = document.createElement("span");
-            authorContent.appendChild(link);
-            author.appendChild(authorContent);
-            quote.appendChild(author);
-        });
-
+    chrome.runtime.sendMessage({ action: "fetchQuotes" }, function (data) {
+        // Handle the response from the background script here
+        console.log(data);
+        //console.log(data);
+        const quotesContainter = document.querySelector("#quotes");
+        let quote = document.createElement("p");
+        quotesContainter.appendChild(quote);
+        quote.innerText = data["content"];
+        let author = document.createElement("p");
+        author.id = "author"
+        author.innerText = "Author: "
+        let authorName = data["author"];
+        let link = document.createElement("a");
+        link.rel = "noopener noreferrer";
+        link.target = "_blank"
+        let baseURL = "https://www.google.com/search?q="
+        link.href = baseURL + encodeURIComponent(authorName);
+        link.innerText = authorName;
+        let authorContent = document.createElement("span");
+        authorContent.appendChild(link);
+        author.appendChild(authorContent);
+        quote.appendChild(author);
+    });
 }
 
 function getTime() {
+    // Todo: Allow multiple timezones.
     let date = new Date();
     let hour = date.getHours();
     let min = date.getMinutes();
@@ -116,30 +120,30 @@ function getNews() {
                         bindToView(newsContainer, allSources, convertResponse(data));
                     });
             }
-        }else{
+        } else {
 
-        switch (news) {
-            case 'africa':
-                url = 'http://rssmix.com/u/8858077/rss.xml';
-                break;
-            case 'east-africa':
-                url = 'http://rssmix.com/u/8857989/rss.xml';
-                break;
-            case 'west-africa':
-                url = 'http://rssmix.com/u/8858044/rss.xml';
-                break;
-            case 'central-africa':
-                url = 'http://rssmix.com/u/8858047/rss.xml';
-                break;
-            case 'southern-africa':
-                url = 'http://rssmix.com/u/8858058/rss.xml';
-                break;
-            case 'north-africa':
-                url = 'http://rssmix.com/u/8858068/rss.xml';
-                break;
-            default:
-                url = 'http://rssmix.com/u/8858077/rss.xml';
-        }
+            switch (news) {
+                case 'africa':
+                    url = 'http://rssmix.com/u/8858077/rss.xml';
+                    break;
+                case 'east-africa':
+                    url = 'http://rssmix.com/u/8857989/rss.xml';
+                    break;
+                case 'west-africa':
+                    url = 'http://rssmix.com/u/8858044/rss.xml';
+                    break;
+                case 'central-africa':
+                    url = 'http://rssmix.com/u/8858047/rss.xml';
+                    break;
+                case 'southern-africa':
+                    url = 'http://rssmix.com/u/8858058/rss.xml';
+                    break;
+                case 'north-africa':
+                    url = 'http://rssmix.com/u/8858068/rss.xml';
+                    break;
+                default:
+                    url = 'http://rssmix.com/u/8858077/rss.xml';
+            }
 
             $.get(cors + url, function (responseText) {
                 console.log(responseText);
