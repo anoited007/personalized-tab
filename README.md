@@ -65,10 +65,6 @@ We welcome contributions from the community to make this extension even better. 
 
 5. Open a pull request on this repository, explaining your changes and the problem they solve.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact
 
 If you have any questions, suggestions, or issues, please feel free to [open an issue](https://github.com/anoited007/personalized-tab/issues) on this repository.

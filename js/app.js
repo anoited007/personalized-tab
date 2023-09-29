@@ -1,30 +1,60 @@
 var news;
 var cache;
+var timeInit=false
 var links = [
     {
-        link: 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Ffeeds.feedburner.com%2Feset%2Fblog',
-        enabled: true
+        link: 'https://feeds.feedburner.com/eset/blog',
+        category: 'security',
+        feedFormat:'XML'
     },
     {
-        link: 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fsecurityaffairs.co%2Fwordpress%2Ffeed',
-        enabled: true
+        link: 'https://securityaffairs.co/wordpress/feed',
+        category: 'security',
+        feedFormat:'XML'
     },
     {
-        link: 'https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.darkreading.com%2Frss_simple.asp',
-        enabled: true
+        link: 'https://www.darkreading.com/rss_simple.asp',
+        category: 'security',
+        feedFormat:'XML'
+    },
+    {
+        link: 'https://www.wired.com/feed/tag/ai/latest/rss',
+        category: 'ai',
+        feedFormat:'XML'
     },
 ];
 
-$(document).ready(function () {
-    getName()
+//Initialize the default configs on first installation.
+chrome.runtime.onInstalled.addListener(function (details) {
+    if (details.reason === "install") {
+        chrome.runtime.sendMessage({ action: "SET_DEFAULT_CONFIGURATION"})
+        console.log('Initializing default configs');
+    }
 });
 
-function NewsDetail(source, data) {
-    this.source = source;
-    this.data = data;
-}
+$("#bg").ripples({
+    resolution: 500,
+    dropRadius: 40,
+    perturbance: 0.002,
+    interactive: true,
+    crossOrigin: true
+});
 
-const cors = "https://cors-anywhere.herokuapp.com/";
+//When document is ready get configs
+$(document).ready(function () {
+    // Get username
+    getName()
+    // Get Famous Quotes
+    getQuote()
+    // Get timeszones. 
+    chrome.storage.sync.get('timezones', function (result) {
+        getTime(result.timezones);
+    });
+  getNews();
+});
+
+
+const cors = "https://corsproxy.io/?";
 
 // Todo: implement caching and also check to quote 24 hour later
 fetch('https://beta.ourmanna.com/api/v1/get?format=json&order=daily')
@@ -45,18 +75,15 @@ fetch('https://beta.ourmanna.com/api/v1/get?format=json&order=daily')
     });
 
 function getQuote() {
-    chrome.runtime.sendMessage({ action: "fetchQuotes" }, function (data) {
-        // Handle the response from the background script here
-        console.log(data);
-        //console.log(data);
+    chrome.runtime.sendMessage({ action: "FETCH_DATA", feedFormat: "JSON", url: "https://api.quotable.io/quotes/random" }, function (data) {
         const quotesContainter = document.querySelector("#quotes");
         let quote = document.createElement("p");
         quotesContainter.appendChild(quote);
-        quote.innerText = data["content"];
+        quote.innerText = data[0]["content"];
         let author = document.createElement("p");
         author.id = "author"
         author.innerText = "Author: "
-        let authorName = data["author"];
+        let authorName = data[0]["author"];
         let link = document.createElement("a");
         link.rel = "noopener noreferrer";
         link.target = "_blank"
@@ -69,28 +96,45 @@ function getQuote() {
         quote.appendChild(author);
     });
 }
+function getTime(timezones) {
+    // Clear existing clock elements
+    clocks = document.querySelector("#clock")
+    for (const timezone of timezones) {
+        timeInit = clocks.childNodes.length === timezones.length ? true : false
+        let date = new Date();
+        let utc = date.getTime() + date.getTimezoneOffset() * 60000;
+        let timeInSelectedTimezone = new Date(utc + timezone.offset);
 
-function getTime() {
-    // Todo: Allow multiple timezones.
-    let date = new Date();
-    let hour = date.getHours();
-    let min = date.getMinutes();
-    let sec = date.getSeconds();
+        let hour = timeInSelectedTimezone.getHours();
+        let min = timeInSelectedTimezone.getMinutes();
+        let sec = timeInSelectedTimezone.getSeconds();
 
-    min = checkTime(min);
-    sec = checkTime(sec);
+        min = checkTime(min);
+        sec = checkTime(sec);
 
-    let time = document.querySelector("#clock");
-    time.textContent = hour + ":" + min + ":" + sec;
-    let t = setTimeout(getTime, 500);
+        if (!timeInit) {
+            let timeContainer= document.createElement("div");
+            timeContainer.id = "clock-" + timezone.offset;
+            labelspan = document.createElement("span");
+            labelspan.textContent = timezone.timezone + " :"
+            labelspan.classList.add('clock-label')
+            timeContainer.appendChild(labelspan)
+            timespan = document.createElement("span");
+            timespan.textContent =  hour + ":" + min + ":" + sec;
+            timeContainer.appendChild(timespan)
+            clocks.appendChild(timeContainer);
+        } else {
+            clock = document.querySelector("#clock-" + timezone.offset).childNodes[1]
+            clock.textContent = hour + ":" + min + ":" + sec;
+        }
+    }
+
+    let t = setTimeout(() => getTime(timezones), 500);
 }
 
+// Helper function to add leading zeros
 function checkTime(i) {
-    // add zero in front of numbers < 10
-    if (i < 10) {
-        i = "0" + i
-    }
-    return i;
+    return (i < 10 ? "0" : "") + i;
 }
 
 function getNews() {
@@ -106,86 +150,40 @@ function getNews() {
     }, function (items) {
         news = items.news;
         cache = items.cache;
-        if (news !== 'security') {
-            $('#title').text('Love for Africa');
-        }
-        if (news === 'all' || news === 'security') {
-            var index;
-            for (index in links) {
-                fetch(links[index].link)
-                    .then(function (response) {
-                        return response.json();
+        $('#title').text('FEED ON '+items.news.toUpperCase());
+            for (const link of links) {
+                if(link.category===items.news){
+                    chrome.runtime.sendMessage({ action: "FETCH_DATA", feedFormat: link.feedFormat, url: cors+link.link }, function (response) {
+                       console.log(response)
+                        let data = parseFeedToObj(response)
+                       console.log(data)
+                        bindToView(newsContainer, allSources, data);
                     })
-                    .then(function (data) {
-                        bindToView(newsContainer, allSources, convertResponse(data));
-                    });
+                }
             }
-        } else {
-
-            switch (news) {
-                case 'africa':
-                    url = 'http://rssmix.com/u/8858077/rss.xml';
-                    break;
-                case 'east-africa':
-                    url = 'http://rssmix.com/u/8857989/rss.xml';
-                    break;
-                case 'west-africa':
-                    url = 'http://rssmix.com/u/8858044/rss.xml';
-                    break;
-                case 'central-africa':
-                    url = 'http://rssmix.com/u/8858047/rss.xml';
-                    break;
-                case 'southern-africa':
-                    url = 'http://rssmix.com/u/8858058/rss.xml';
-                    break;
-                case 'north-africa':
-                    url = 'http://rssmix.com/u/8858068/rss.xml';
-                    break;
-                default:
-                    url = 'http://rssmix.com/u/8858077/rss.xml';
-            }
-
-            $.get(cors + url, function (responseText) {
-                console.log(responseText);
-                var data = xmlToJson(responseText);
-                console.log(data)
-                bindToView(newsContainer, allSources, convertRssMixResponse(data));
-            });
-        }
     });
 };
 
 
 function getName() {
-
-    chrome.storage.sync.get({
-        username: ''
-    }, function (items) {
-        const name = items.username;
-        if (name != null) {
-            const p = document.getElementById("name");
+    chrome.storage.sync.get('username', function (configs) {
+        const name = configs.username;
+        if (name) {
+            const p = document.getElementById("username");
             p.innerText = p.innerText + " " + name;
             document.getElementById("nameInput").style.display = "none";
         } else {
             document.getElementById("nameInput").style.display = "block";
         }
     });
-
-
 }
 
 $("#nameInput").on('keypress', function (e) {
     if (e.which === 13) {
-        localStorage.setItem("name", $("#nameInput").val());
+        chrome.storage.sync.set({'username': $("#nameInput").val()});
         document.getElementById("nameInput").style.display = "none";
         getName();
     }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    getQuote();
-    getTime();
-    getNews();
 });
 
 /*Helper Functions*/
@@ -193,22 +191,9 @@ function classStringGen(string) {
     return string.toLowerCase().replace(' ', '')
 }
 
-$("#bg").ripples({
-    resolution: 800,
-    dropRadius: 20,
-    perturbance: 0.02,
-    interactive: true,
-    crossOrigin: true
-});
-
-function convertResponse(data) {
-    return new NewsDetail(data.feed.title, data.items);
-    ;
-}
-
-function convertRssMixResponse(data) {
-    return new NewsDetail(data.rss.channel.title, data.rss.channel.item);
-    ;
+function NewsDetail(source, data) {
+    this.source = source;
+    this.data = data;
 }
 
 function bindToView(newsContainer, allSources, newsDetails) {
@@ -221,14 +206,12 @@ function bindToView(newsContainer, allSources, newsDetails) {
     li.innerText = source.textContent;
     li.setAttribute("class", classStringGen(source.innerText));
     allSources.append(li);
-    let data = newsDetails.data;
 
-    let length = data.length;
-    for (let i = 0; i < length; i++) {
+    for (const item of newsDetails.data) {
         let newsItem = document.createElement("div");
         newsItem.classList.add("news", "card");
-        let title = data[i]["title"]
-        let url = data[i]["link"];
+        let title = item.title
+        let url = item.link
         let link = document.createElement("a");
         link.href = url;
         link.innerHTML = title;
@@ -239,32 +222,35 @@ function bindToView(newsContainer, allSources, newsDetails) {
     }
 }
 
-// improve runtime of this function
-function xmlToJson(xml) {
-    try {
-        var obj = {};
-        if (xml.children.length > 0) {
-            for (var i = 0; i < xml.children.length; i++) {
-                var item = xml.children.item(i);
-                var nodeName = item.nodeName;
+function parseFeedToObj(rssData) {
+    console.log(rssData);
+    // Parse the RSS data using DOMParser
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(rssData, 'application/xml');
 
-                if (typeof (obj[nodeName]) == "undefined") {
-                    obj[nodeName] = xmlToJson(item);
-                } else {
-                    if (typeof (obj[nodeName].push) == "undefined") {
-                        var old = obj[nodeName];
+    // Initialize an empty array to store the parsed JSON data
+    const items = [];
 
-                        obj[nodeName] = [];
-                        obj[nodeName].push(old);
-                    }
-                    obj[nodeName].push(xmlToJson(item));
-                }
-            }
-        } else {
-            obj = xml.textContent;
-        }
-        return obj;
-    } catch (e) {
-        console.log(e.message);
-    }
+    const source = xmlDoc.querySelector('channel');
+    const title = source.querySelector('title').textContent;
+    const link = source.querySelector('link').textContent;
+
+    // Extract data from the XML
+    const rssItems = xmlDoc.querySelectorAll('item');
+    rssItems.forEach((item) => {
+        const title = item.querySelector('title').textContent;
+        const link = item.querySelector('link').textContent;
+        const description = item.querySelector('description').textContent;
+        const pubDate = item.querySelector('pubDate').textContent;
+
+        items.push({
+            title,
+            link,
+            description,
+            pubDate,
+        });
+    });
+
+    // Convert the array of items to JSON
+    return {source:title,data:items}
 }

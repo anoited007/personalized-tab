@@ -3,10 +3,11 @@ body {
   background: linear-gradient(90deg, rgba(2,0,36,1) 27%, rgba(121,9,70,0.8) 53%, rgba(0,212,255,1) 75%);
   background: -webkit-linear-gradient(to right, rgba(2,0,36,1) 27%, rgba(121,9,70,0.8) 53%, rgba(0,212,255,1) 75%);
   background:  linear-gradient(
-      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.6),
       rgba(56, 15, 17, 0.5)
     ), url('https://picsum.photos/2048/1365/?random'),url('../images/bg.jpeg');
     background-position: center center;
+    transition: background 0.5s ease-in-out;
     filter: blur(0.2px);
     overflow: hidden;
     text-shadow:0 1px 5px rgba(0,0,0,.1);
@@ -112,7 +113,7 @@ a:hover {
 }
 
 #time{
-  font-size: 7em;
+  font-size: 5em;
   font-weight: bold;
   color: #fff;
 }
@@ -152,8 +153,8 @@ a:hover {
   display: none;
 }
 
-#name{
-  font-size: 3em;
+#username{
+  font-size: 2.5rem;
   font-weight: lighter;
   color: #fff;
 }
@@ -177,3 +178,6 @@ a:hover {
   position: relative;
 }
 
+.clock-label{
+  font-size: 2rem;
+}

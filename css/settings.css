@@ -1,9 +1,9 @@
-body {
-    height: 100%;
+body{
+    overflow: block;
 }
 
 .settings-container {
-    height: 100vh;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,7 +14,7 @@ body {
     background-color: rgba(169, 35, 52, 0.8);
     background-color: rgba(12, 31, 44, 0.8);
     width: 40vw;
-    height: 40vh;
+    height: 70vh;
 }
 
 /* The container */
@@ -96,8 +96,8 @@ display: block
 .box select {
     background-color: #eee;
     color: #a92334;
-    padding: 12px;
-    width: 250px;
+    padding: 5px;
+    width: 350px;
     border: none;
     font-size: 20px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
@@ -112,7 +112,7 @@ display: block
 }
 
 .box select option {
-    padding: 30px;
+    padding: 10px;
 }
 
 .btn{

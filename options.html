@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head><title>Settings</title></head>
-<link rel="stylesheet" type="text/css" href="css/settings.css"/>
 <link rel="stylesheet" type="text/css" href="css/index.css"/>
+<link rel="stylesheet" type="text/css" href="css/settings.css"/>
 <body>
 <div class="settings-container">
     <div class="settings">
         <h2>News to display</h2>
         <div class="box">
             <select id="news">
-                <option value="all">All</option>
-                <option value="africa">Africa</option>
-                <option value="north-africa">North Africa</option>
-                <option value="east-africa">East Africa</option>
-                <option value="west-africa">West Africa</option>
-                <option value="central-africa">Central Africa</option>
-                <option value="southern-africa">Southern Africa</option>
-                <option value="security">Security</option>
+                
+            </select>
+        </div>
+        <h2>Timezones to display </h2>
+        <p>Hold down the Ctrl (or Command on Mac) key while clicking on the options</p>
+        <div class="box">
+            <select id="timezones" multiple >
             </select>
         </div>
         <br><br>
@@ -32,6 +31,7 @@
         <div id="status"></div>
         <br>
         <button class="btn" id="save">Save</button>
+        <button class="btn" id="reset">Reset Configuration</button>
 
     </div>
 </div>
