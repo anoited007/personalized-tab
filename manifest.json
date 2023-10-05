@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
   "name": "Personalized New Tab",
-  "description": "Customize new tab experience to stay update on favorite news",
+  "description": "Customize new tab experience to stay update on favorite feed",
   "permissions": [
     "storage"
   ],
-  "version": "1.3",
+  "version": "1.5",
   "options_page": "options.html",
   "action": {
     "default_title": "Personalized New Tab",
@@ -13,9 +13,13 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://quotes.rest/qod"
-      ],
+      "matches":[        
+      "https://feeds.feedburner.com/eset/blog",
+      "https://securityaffairs.co/wordpress/feed",
+      "https://www.darkreading.com/rss_simple.asp",
+      "https://www.darkreading.com/rss_simple.asp",
+      "https://www.prlog.org/*"
+    ],
       "css": [
         "css/index.css",
         "css/todo.css"

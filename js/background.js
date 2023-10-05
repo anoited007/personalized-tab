@@ -1,19 +1,40 @@
 // Helper Functions to execute various functions in the extension. 
 // Read about service worker here https://developer.chrome.com/docs/extensions/mv3/service_workers/ 
 
-function getTimezoneOffset(targetTimezone) {
-    console.log(targetTimezone);
-    // Use the computer's current timezone if no target timezone is provided
-    targetTimezone = targetTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+//Initialize the default configs on first installation.
+chrome.runtime.onInstalled.addListener(function (details) {
+    if (details.reason === "install") {
+        // Set default values in storage
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+        const formatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: tz,
+            timeZoneName: 'short',
+        });
 
-    // Create Date objects for the current time in the target timezone and UTC
-    const currentTimeInUTC = new Date();
-    const currentTimeInTargetTimezone = new Date().toLocaleString('en-US', { timeZone: targetTimezone });
+        const abbreviation = formatter.formatToParts(new Date())
+            .find(part => part.type === 'timeZoneName')
+            .value;
+        chrome.storage.sync.set({
+            feedToDisplay: 'security',
+            enableTodo: true,
+            enableFeed: true,
+            enableGreeting:  true,
+            enableReligiousQuote: true,
+            enableFamousQuote:true,
+            enableClock: true,
+            cache: true,
+            greeting: null,
+            timezones: [{
+                "timezone": tz,
+                "abbreviation": abbreviation
+            }]
+        },function(data){
+            chrome.tabs.create({ url: `chrome-extension://${chrome.runtime.id}/options.html` }, function (tab) {
+            });
+        });
 
-    // Calculate the offset in milliseconds
-    const timezoneOffsetMilliseconds = new Date(currentTimeInTargetTimezone) - currentTimeInUTC;
-    return { timezone: targetTimezone, offset: timezoneOffsetMilliseconds };
-}
+    }
+});
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     switch (message.action) {
@@ -31,25 +52,34 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
                 });
             return message.isAsync === undefined ? !message.isAsync : message.isAsync;
         case 'SET_DEFAULT_CONFIGURATION':
-                // Set default values in storage
-                let timezoneAndOffset = getTimezoneOffset()
-                console.log(timezoneAndOffset);
-                chrome.storage.sync.set({
-                    news: 'security',
-                    cache: true,
-                    username: null,
-                    timezones: [{
-                        "timezone": timezoneAndOffset.timezone,
-                        "offset": timezoneAndOffset.offset
-                    }]
-                });
-            return message.isAsync === undefined ? !message.isAsync : message.isAsync;
-        case 'GET_TIMEZONE_AND_OFFSET':
-            console.log(message.targetTimezone);
-            sendResponse(getTimezoneOffset(message.targetTimezone))
-            return message.isAsync === undefined ? !message.isAsync : message.isAsync;
+            // Set default values in storage
+            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+            const formatter = new Intl.DateTimeFormat('en-US', {
+                timeZone: tz,
+                timeZoneName: 'short',
+            });
 
+            const abbreviation = formatter.formatToParts(new Date())
+                .find(part => part.type === 'timeZoneName')
+                .value;
+            chrome.storage.sync.set({
+                feed: message.preset.enableFeed ? message.preset.feed : 'security',
+                enableTodo: message.preset.enableTodo || true,
+                enableFeed: message.preset.enableFeed || true,
+                enableGreeting: message.preset.enableGreeting  || true,
+                enableReligiousQuote: message.preset.enableReligiousQuote  || true,
+                enableFamousQuote: message.preset.enableFamousQuote  || true,
+                enableClock: message.preset.enableClock  || true,
+                cache: true,
+                greeting: null,
+                timezones: [{
+                    "timezone": tz,
+                    "abbreviation": abbreviation
+                }]
+            });
+            return message.isAsync === undefined ? !message.isAsync : message.isAsync;
     }
     // Return true to indicate that we will send a response asynchronously by default if no Async option was specified
     return message.isAsync === undefined ? !message.isAsync : message.isAsync;
 });
+

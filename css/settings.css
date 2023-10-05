@@ -1,20 +1,13 @@
-body{
-    overflow: block;
-}
+@import 'common.css';
 
-.settings-container {
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.settings {
-    padding: 10%;
-    background-color: rgba(169, 35, 52, 0.8);
+#settings-container {
+    margin:5vh 20vw;
+    padding: 10vh 5vw;
     background-color: rgba(12, 31, 44, 0.8);
-    width: 40vw;
+    width: 50vw;
     height: 70vh;
+    overflow-y: scroll;
 }
 
 /* The container */
@@ -112,17 +105,18 @@ display: block
 }
 
 .box select option {
-    padding: 10px;
+    padding: 1rem;
 }
 
 .btn{
+    margin: 1rem 1rem 0.5rem 0rem;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0px;
     color: #ffffff;
-    font-size: 24px;
+    font-size: 1rem;
     background: #a92334;
-    padding: 10px 20px 10px 20px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
     text-decoration: none;
     border: none;
 }
@@ -133,7 +127,7 @@ display: block
     box-shadow: 3px 3px 20px rgba(5, 14, 19, 0.5);
 }
 
-#username{
+.input{
     font-size: 24px;
     padding: 8px;
     color: #a92334;

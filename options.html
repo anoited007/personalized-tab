@@ -1,42 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head><title>Settings</title></head>
-<link rel="stylesheet" type="text/css" href="css/index.css"/>
-<link rel="stylesheet" type="text/css" href="css/settings.css"/>
+
+<head>
+    <title>Settings</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css" href="css/settings.css" />
+<script src="js/jquery-3.3.1.js"></script>
+<script defer src="js/options.js"></script>
+
 <body>
-<div class="settings-container">
-    <div class="settings">
-        <h2>News to display</h2>
-        <div class="box">
-            <select id="news">
-                
-            </select>
-        </div>
-        <h2>Timezones to display </h2>
-        <p>Hold down the Ctrl (or Command on Mac) key while clicking on the options</p>
-        <div class="box">
-            <select id="timezones" multiple >
-            </select>
-        </div>
-        <br><br>
-        <label class="container" id="cache">Cache News
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-        </label>
-        <br><br>
-        <label>
-            <input placeholder="Full Name" type="text" id="username"/>
-        </label>
-        <br>
-        <div id="status"></div>
-        <br>
-        <button class="btn" id="save">Save</button>
-        <button class="btn" id="reset">Reset Configuration</button>
-
+    <div id="settings-container">
+        <h1>Configure Extension</h1>
     </div>
-</div>
-
-
-<script src="js/options.js"></script>
 </body>
+
 </html>

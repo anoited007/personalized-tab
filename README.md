@@ -4,7 +4,7 @@
 
 ## Overview
 
-The "Personalized Tab" Chrome Extension is a versatile new tab replacement designed to enhance your browsing experience. It provides a customized dashboard with features aimed at increasing productivity, keeping you informed, and making your browser's new tab page more personal.
+The "Personalized Tab" Chrome Extension is a versatile new tab replacement designed to enhance your productivity. It provides a customized dashboard with features aimed at increasing productivity, keeping you informed, and making your browser's new tab page more personal.
 
 ## Get from Chrome
 
@@ -14,7 +14,7 @@ The "Personalized Tab" Chrome Extension is a versatile new tab replacement desig
 
 Tailor your new tab page to your preferences:
 
-- **Widgets:** Add or remove widgets for timezones, news links and quotes (Bible or Random quotes).
+- **Widgets:** Add or remove widgets for timezones, feed links and quotes (Religious or Random quotes).
 
 ### 2. **Productivity Tools**
 
@@ -24,9 +24,9 @@ Boost your daily productivity with built-in tools:
 
 ### 3. **Security News**
 
-Stay up-to-date with the latest security news:
+Stay up-to-date with the latest security feed:
 
-- **Headlines:** Get a quick overview of top security news headlines.
+- **Headlines:** Get a quick overview of top security feed headlines.
 
 ## Local Installation
 
@@ -49,7 +49,7 @@ To use the "Personalized Tab" Chrome Extension:
 - Open a new tab to access the personalized new tab page.
 - Customize the page to your liking, selecting background images, colors, and widgets.
 - Use the productivity tools to manage tasks, take notes, and check the weather.
-- Stay informed about security news from your chosen sources.
+- Stay informed about security feed from your chosen sources.
 
 ## Contributing
 
