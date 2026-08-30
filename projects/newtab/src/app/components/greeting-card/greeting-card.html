@@ -1,0 +1,22 @@
+<div class="glass-shell enter">
+  <div class="glass-core pad">
+    <span class="eyebrow">{{ timeOfDay }}</span>
+
+    @if (!editing()) {
+      <button type="button" class="greeting-text" (click)="startEditing()">
+        <span [appTypewriter]="displayText()"></span><app-cursor />
+      </button>
+    } @else {
+      <input
+        class="greeting-input"
+        type="text"
+        [ngModel]="draft()"
+        (ngModelChange)="draft.set($event)"
+        placeholder="Your name, or a mantra"
+        (keydown.enter)="save()"
+        (blur)="save()"
+        autofocus
+      />
+    }
+  </div>
+</div>

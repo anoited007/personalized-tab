@@ -1,0 +1,26 @@
+<input
+  class="tz-search"
+  type="text"
+  placeholder="Search timezones…"
+  [ngModel]="query()"
+  (ngModelChange)="query.set($event)"
+/>
+
+@if (selected().length) {
+  <div class="tz-chips">
+    @for (tz of selected(); track tz.timezone) {
+      <button type="button" class="tz-chip mono" (click)="toggle(tz.timezone)">
+        {{ tz.abbreviation }} <span class="tz-chip-x">×</span>
+      </button>
+    }
+  </div>
+}
+
+<div class="tz-list">
+  @for (tz of filtered(); track tz) {
+    <label class="tz-option">
+      <input type="checkbox" [checked]="isSelected(tz)" (change)="toggle(tz)" />
+      <span class="mono">{{ tz }}</span>
+    </label>
+  }
+</div>

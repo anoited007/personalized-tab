@@ -1,0 +1,37 @@
+.clock-time {
+  margin-top: var(--space-3);
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  font-weight: 500;
+  color: var(--ink-100);
+  line-height: 1.05;
+}
+
+.clock-zone {
+  display: inline-block;
+  margin-top: var(--space-2);
+  color: var(--ink-45);
+  font-size: 0.85rem;
+}
+
+.clock-secondary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.clock-chip {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--hairline-soft);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.8rem;
+}
+
+.chip-zone {
+  color: var(--ink-45);
+  font-size: 0.7rem;
+}

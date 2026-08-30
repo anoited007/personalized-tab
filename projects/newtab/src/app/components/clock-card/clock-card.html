@@ -1,0 +1,20 @@
+@if (primary(); as reading) {
+  <div class="glass-shell enter" style="animation-delay: 80ms">
+    <div class="glass-core pad">
+      <span class="section-label"><span class="bracket">::</span> local time</span>
+      <p class="clock-time mono">{{ reading.time }}<app-cursor /></p>
+      <span class="clock-zone mono">{{ reading.abbreviation }}</span>
+
+      @if (secondary().length) {
+        <div class="clock-secondary">
+          @for (extra of secondary(); track extra.timezone) {
+            <div class="clock-chip">
+              <span class="mono">{{ extra.time }}</span>
+              <span class="mono chip-zone">{{ extra.abbreviation }}</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}

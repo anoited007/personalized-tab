@@ -1,0 +1,14 @@
+.quote-text {
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ink-100);
+}
+
+.quote-author {
+  margin-top: var(--space-3);
+  color: var(--phosphor-dim);
+  font-size: 0.78rem;
+}
