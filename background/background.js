@@ -27,7 +27,7 @@ function defaultSettings() {
     feed: '',
     timezones: [{ timezone, abbreviation: timezoneAbbreviation(timezone) }],
     theme: 'globetrotter',
-    accentColor: 'mint',
+    accentColor: 'red',
   };
 }
 

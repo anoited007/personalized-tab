@@ -1,11 +1,12 @@
 // Design tokens.
 //
 // Two full themes live here, both driven by attributes on <html>:
-//   - Terminal (default): "Ethereal Glass" — deep void, blurred glass
-//     panels, a swappable phosphor accent (see [data-accent]).
+//   - Terminal (default): "Ethereal Glass" — deep void, blurred glass panels.
 //   - Globetrotter ([data-theme="globetrotter"]): mid-century travel-poster
-//     noir — flat opaque red/black/cream, condensed display type, sharp
+//     noir — flat opaque black/cream, condensed display type, sharp
 //     rectangular edges, no blur.
+// The accent color (--phosphor / --phosphor-dim, see [data-accent]) is
+// independent of theme — Red/Mint/Azure/Amber all apply in either one.
 // Every component styles off these custom properties, never a literal
 // color/radius/font — that's what lets one attribute swap re-skin the
 // whole app. Driven by Settings.theme / Settings.accentColor (models.ts).
@@ -60,6 +61,14 @@
   color-scheme: dark;
 }
 
+// Accent colors — apply in either theme (Settings.accentColor), independent
+// of [data-theme]. 'red' is Globetrotter's own original signature color;
+// keep it in sync with the 'red' entry in ACCENT_COLORS.
+:root[data-accent='red'] {
+  --phosphor: #d7263d;
+  --phosphor-dim: rgba(215, 38, 61, 0.6);
+}
+
 :root[data-accent='azure'] {
   --phosphor: #5ea1ff;
   --phosphor-dim: rgba(94, 161, 255, 0.55);
@@ -70,9 +79,8 @@
   --phosphor-dim: rgba(255, 184, 77, 0.55);
 }
 
-// Globetrotter — placed last so it wins over any [data-accent] block still
-// set on Settings.accentColor (applyTheme() clears data-accent while this
-// is active, but source order makes that belt-and-braces).
+// Globetrotter — everything except the accent color, which comes from
+// whichever [data-accent] block above is active.
 :root[data-theme='globetrotter'] {
   --void: #131010;
   --void-strong: #0a0807;
@@ -91,8 +99,6 @@
   --glass-core: #171211;
   --glass-core-strong: #1c1615;
 
-  --phosphor: #d7263d;
-  --phosphor-dim: rgba(215, 38, 61, 0.6);
   --violet: #c99a3b;
 
   --radius-shell: 2px;

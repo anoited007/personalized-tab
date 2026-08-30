@@ -24,7 +24,7 @@ const DEMO_SYNC = {
   feedToDisplay: 'all',
   feed: '',
   theme: 'globetrotter',
-  accentColor: 'mint',
+  accentColor: 'red',
   enableRipple: true,
   rippleIntensity: 0.35,
   enableTypingEffect: true,

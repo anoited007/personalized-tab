@@ -25,11 +25,11 @@ on **Manifest V3**.
   over it (WebGL; falls back to a plain static photo where WebGL isn't
   available). Sensitivity is adjustable, and it's toggleable like everything
   else below.
-- **Themes** — **Globetrotter** (red & black, mid-century travel-poster noir —
-  flat opaque cards, condensed display type, sharp edges, a duotone-filtered
-  background photo) or **Terminal** (the dark-glass look, with a Mint, Azure,
-  or Amber accent). A full re-skin, not just a color swap — both are
-  selectable, with a live preview, from the options page.
+- **Themes** — **Globetrotter** (mid-century travel-poster noir — flat opaque
+  cards, condensed display type, sharp edges, a duotone-filtered background
+  photo) or **Terminal** (the dark-glass look). A full re-skin, not just a
+  color swap. Either way, pick an accent — Red, Mint, Azure, or Amber —
+  it applies in both. Selectable with a live preview from the options page.
 - **Settings** — every widget (greeting, feed, clock, both quotes, to-do,
   background ripple, the typing effect, and the blinking cursor) can be
   turned on or off independently, and the feed category, custom feeds,
@@ -69,7 +69,9 @@ projects/
   shared/     services, models, and design tokens shared by all three
 background/   MV3 service worker (feed/quote fetches, install defaults)
 manifest.json
-scripts/build-extension.mjs   assembles dist-extension/ after `ng build`
+scripts/build-extension.mjs     assembles dist-extension/ after `ng build`
+scripts/package-extension.mjs   zips dist-extension/ into releases/
+Makefile                        build/zip/upload/publish — see "Publishing" below
 ```
 
 ## Chrome Web Store listing
@@ -95,6 +97,53 @@ scripts/build-extension.mjs   assembles dist-extension/ after `ng build`
 > No accounts, no tracking. Settings sync via your Chrome profile
 > (`chrome.storage.sync`); everything else — your to-do list, cached feed
 > data — stays on your device.
+
+## Publishing
+
+`make` wraps the whole release flow — build, zip, upload, publish — and both
+local runs and [`.github/workflows/release.yml`](.github/workflows/release.yml)
+call the exact same targets, so CI can't drift from what you run by hand:
+
+```bash
+make build     # build the three apps into dist-extension/
+make zip       # + zip into releases/personalized-tab-v<version>.zip
+make upload    # + upload that zip to the Chrome Web Store as a DRAFT (not live)
+make publish   # publish the most recently uploaded draft — this goes live
+make release   # upload + publish in one step — this goes live
+make clean     # remove all build/package output
+```
+
+`upload`/`publish`/`release` need four credentials as environment variables:
+`EXTENSION_ID`, `CLIENT_ID`, `CLIENT_SECRET`, `REFRESH_TOKEN`. One-time setup
+to get them:
+
+1. **List the extension once, manually.** The Chrome Web Store API can only
+   update an *existing* listing, not create one — upload `make zip`'s output
+   by hand at the
+   [developer dashboard](https://chrome.google.com/webstore/devconsole) the
+   first time. Its listing URL/dashboard gives you `EXTENSION_ID`.
+2. **Create OAuth credentials.** In the
+   [Google Cloud Console](https://console.cloud.google.com/apis/credentials),
+   create a project (or use an existing one), enable the **Chrome Web Store
+   API**, and create an OAuth **Client ID** of type **Desktop app**. That
+   gives you `CLIENT_ID` and `CLIENT_SECRET`.
+3. **Get a refresh token.** At the
+   [OAuth 2.0 Playground](https://developers.google.com/oauthplayground):
+   click the gear icon → check **Use your own OAuth credentials** → paste in
+   the client ID/secret from step 2 → in Step 1, authorize scope
+   `https://www.googleapis.com/auth/chromewebstore` → in Step 2, click
+   **Exchange authorization code for tokens**. The **Refresh token** field is
+   `REFRESH_TOKEN`.
+
+Locally: `export EXTENSION_ID=... CLIENT_ID=... CLIENT_SECRET=... REFRESH_TOKEN=...`
+then run any target above. In CI: add the same four as **repository secrets**
+named `CHROME_EXTENSION_ID`, `CHROME_CLIENT_ID`, `CHROME_CLIENT_SECRET`,
+`CHROME_REFRESH_TOKEN` (Settings → Secrets and variables → Actions).
+
+The workflow pushes a new **draft** to the Web Store automatically on any
+`v*` tag, plus attaches the zip to a GitHub Release — it does **not** publish
+automatically. To actually go live, run the workflow manually from the
+Actions tab ("Run workflow") with the **publish** checkbox on.
 
 ## Contributing
 

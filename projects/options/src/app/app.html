@@ -46,23 +46,21 @@
           }
         </div>
 
-        @if (draft().theme === 'terminal') {
-          <label class="field-label">Accent</label>
-          <div class="swatches">
-            @for (accent of accentColors; track accent.id) {
-              <button
-                type="button"
-                class="swatch"
-                [class.active]="draft().accentColor === accent.id"
-                (click)="patch({ accentColor: accent.id })"
-                [attr.aria-label]="accent.label"
-              >
-                <span class="swatch-color" [style.background]="accent.swatch"></span>
-                <span class="swatch-label mono">{{ accent.label }}</span>
-              </button>
-            }
-          </div>
-        }
+        <label class="field-label">Accent</label>
+        <div class="swatches">
+          @for (accent of accentColors; track accent.id) {
+            <button
+              type="button"
+              class="swatch"
+              [class.active]="draft().accentColor === accent.id"
+              (click)="patch({ accentColor: accent.id })"
+              [attr.aria-label]="accent.label"
+            >
+              <span class="swatch-color" [style.background]="accent.swatch"></span>
+              <span class="swatch-label mono">{{ accent.label }}</span>
+            </button>
+          }
+        </div>
       </div>
     </section>
 

@@ -54,10 +54,11 @@ export const THEMES: { id: Theme; label: string; description: string; swatch: [s
   },
 ];
 
-/** Sub-accent, only meaningful within the Terminal theme. */
-export type AccentColor = 'mint' | 'azure' | 'amber';
+/** Accent color — applies within either theme (see [data-accent] in tokens.scss). */
+export type AccentColor = 'red' | 'mint' | 'azure' | 'amber';
 
 export const ACCENT_COLORS: { id: AccentColor; label: string; swatch: string }[] = [
+  { id: 'red', label: 'Red', swatch: '#d7263d' },
   { id: 'mint', label: 'Mint', swatch: '#8bffc2' },
   { id: 'azure', label: 'Azure', swatch: '#5ea1ff' },
   { id: 'amber', label: 'Amber', swatch: '#ffb84d' },
@@ -100,5 +101,5 @@ export const DEFAULT_SETTINGS: Settings = {
   feed: '',
   timezones: [],
   theme: 'globetrotter',
-  accentColor: 'mint',
+  accentColor: 'red',
 };
