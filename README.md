@@ -80,6 +80,11 @@ Makefile                        build/zip/upload/publish — see "Publishing" be
 
 ## Chrome Web Store listing
 
+Keep this pasted verbatim into the Developer Dashboard's Store Listing —
+don't append a "Created by ..." credit line or anything else to it; Chrome's
+review flags developer names and extra text in the description as spam
+metadata (that's what your account/developer profile field is for).
+
 **Short description** (132 char max):
 > Turn your new tab into a personal dashboard: live security & AI/robotics feeds, a clock, quotes, and a to-do list.
 
@@ -95,8 +100,9 @@ Makefile                        build/zip/upload/publish — see "Publishing" be
 >   optional.
 > - **Stay organized** — a lightweight to-do list, saved locally, right on
 >   your new tab.
-> - **Make it yours** — every widget above can be switched on or off from the
->   settings page, and the feed, timezones, and greeting are all yours to set.
+> - **Make it yours** — pick a theme (a dark-glass Terminal look or
+>   Globetrotter's travel-poster noir), an accent color, and switch any
+>   widget above on or off from the settings page.
 >
 > No accounts, no tracking. Settings sync via your Chrome profile
 > (`chrome.storage.sync`); everything else — your to-do list, cached feed
