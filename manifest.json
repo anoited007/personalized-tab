@@ -4,7 +4,20 @@
   "description": "A fully customizable new tab: live security and AI/robotics research feeds, world clock, to-do list, and daily quotes.",
   "version": "2.0.0",
   "permissions": ["storage"],
-  "host_permissions": ["https://*/*"],
+  "host_permissions": [
+    "https://feeds.feedburner.com/*",
+    "https://securityaffairs.com/*",
+    "https://www.darkreading.com/*",
+    "https://openai.com/*",
+    "https://deepmind.google/*",
+    "https://huggingface.co/*",
+    "https://export.arxiv.org/*",
+    "https://spectrum.ieee.org/*",
+    "https://robohub.org/*",
+    "https://beta.ourmanna.com/*",
+    "https://dummyjson.com/*"
+  ],
+  "optional_host_permissions": ["https://*/*"],
   "options_page": "options/index.html",
   "action": {
     "default_title": "Personalized New Tab",

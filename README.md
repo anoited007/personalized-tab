@@ -15,7 +15,11 @@ on **Manifest V3**.
   an **AI & Robotics research** category (OpenAI, Google DeepMind, Hugging
   Face, arXiv cs.AI/cs.LG/cs.RO, IEEE Spectrum Robotics, Robohub), plus any
   custom RSS/Atom feed URLs you add. Fetched directly by the background
-  service worker — no third-party CORS proxy involved.
+  service worker — no third-party CORS proxy involved. The manifest only
+  declares `host_permissions` for those built-in sources; adding a custom
+  feed prompts you for permission to that one domain via
+  `optional_host_permissions`, rather than the extension asking for broad
+  access to every site up front.
 - **Clock** — a live clock across as many timezones as you want to track.
 - **Quotes** — a daily Bible verse and a random famous quote, each independently
   toggleable.

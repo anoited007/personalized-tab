@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { SettingsService } from '@shared/services/settings.service';
 import { ACCENT_COLORS, DEFAULT_SETTINGS, FeedCategory, Settings, THEMES } from '@shared/models/models';
 import { applyTheme } from '@shared/services/apply-theme';
+import { ensureFeedPermissions } from '@shared/services/feed-permissions';
 import { ToggleRow } from './components/toggle-row/toggle-row';
 import { TimezoneSettings } from './components/timezone-settings/timezone-settings';
 
@@ -47,8 +48,18 @@ export class App implements OnInit {
   }
 
   async save(): Promise<void> {
+    // Called first (and synchronously reachable from the click) since
+    // chrome.permissions.request needs a user gesture to show its prompt.
+    const customUrls = this.draft()
+      .feed.split(',')
+      .map((url) => url.trim())
+      .filter(Boolean);
+    const permitted = customUrls.length ? await ensureFeedPermissions(customUrls) : true;
+
     await this.settingsService.save(this.draft());
-    this.flashStatus('Settings saved.');
+    this.flashStatus(
+      permitted ? 'Settings saved.' : 'Saved — but access to your custom feed was declined, so it may not load.',
+    );
   }
 
   async reset(): Promise<void> {
