@@ -80,6 +80,11 @@ Makefile                        build/zip/upload/publish — see "Publishing" be
 
 ## Chrome Web Store listing
 
+Keep this pasted verbatim into the Developer Dashboard's Store Listing —
+don't append a "Created by ..." credit line or anything else to it; Chrome's
+review flags developer names and extra text in the description as spam
+metadata (that's what your account/developer profile field is for).
+
 **Short description** (132 char max):
 > Turn your new tab into a personal dashboard: live security & AI/robotics feeds, a clock, quotes, and a to-do list.
 
@@ -95,12 +100,39 @@ Makefile                        build/zip/upload/publish — see "Publishing" be
 >   optional.
 > - **Stay organized** — a lightweight to-do list, saved locally, right on
 >   your new tab.
-> - **Make it yours** — every widget above can be switched on or off from the
->   settings page, and the feed, timezones, and greeting are all yours to set.
+> - **Make it yours** — pick a theme (a dark-glass Terminal look or
+>   Globetrotter's travel-poster noir), an accent color, and switch any
+>   widget above on or off from the settings page.
 >
 > No accounts, no tracking. Settings sync via your Chrome profile
 > (`chrome.storage.sync`); everything else — your to-do list, cached feed
 > data — stays on your device.
+
+**Single purpose** (the Dashboard asks for this explicitly): personalizing
+the new-tab page. Every feature — feed, clock, quotes, to-do, theme — is a
+widget on that one page; there's no unrelated functionality bundled in.
+
+**Category**: Productivity, or Tools if Productivity isn't offered for new-tab
+extensions in your region.
+
+**Permission justifications** (Dashboard → Privacy practices, one field per
+permission — paste the relevant one, don't combine them):
+
+- `storage` — "Saves the user's settings (which widgets are enabled, theme,
+  feed sources, to-do items) locally via chrome.storage.local and syncs them
+  across the user's signed-in Chrome browsers via chrome.storage.sync. No
+  data leaves the user's own Chrome profile."
+- `host_permissions` (the 11 listed domains) — "The background service
+  worker fetches RSS/Atom feeds and quote APIs from these specific domains
+  to populate the optional Feed and Quote widgets on the new tab page. Each
+  domain is one built-in feed or quote source shown in the extension's
+  Settings page; no other requests are made to these hosts and no user data
+  is sent to them beyond the request itself."
+- `optional_host_permissions` (`https://*/*`) — "Requested only when a user
+  explicitly adds their own custom RSS feed URL in Settings — the extension
+  prompts for permission to that single domain at that moment
+  (chrome.permissions.request), scoped to just what the user typed. Never
+  requested or used without that explicit action."
 
 ## Publishing
 
