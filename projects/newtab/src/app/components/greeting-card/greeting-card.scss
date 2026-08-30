@@ -1,0 +1,38 @@
+.greeting-text {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-3);
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  color: var(--ink-100);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: color 400ms var(--ease-spring);
+}
+
+.greeting-text:hover {
+  color: var(--phosphor);
+}
+
+.greeting-input {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-3);
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  background: none;
+  outline: none;
+  color: var(--ink-100);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 500;
+}
+
+.greeting-input::placeholder {
+  color: var(--ink-25);
+}

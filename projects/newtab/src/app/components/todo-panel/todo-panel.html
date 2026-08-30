@@ -1,0 +1,37 @@
+<div class="glass-shell enter todo-shell" style="animation-delay: 160ms">
+  <div class="glass-core pad todo-core">
+    <span class="section-label"><span class="bracket">$</span> tasks</span>
+
+    <ul class="todo-list">
+      @for (todo of todos(); track todo.id) {
+        <li class="todo-row" [class.done]="todo.done">
+          <button type="button" class="todo-check mono" (click)="todoService.toggle(todo.id)">
+            {{ todo.done ? '[x]' : '[ ]' }}
+          </button>
+          <span class="todo-text">{{ todo.text }}</span>
+          <button type="button" class="todo-remove mono" (click)="todoService.remove(todo.id)" aria-label="Remove">
+            ×
+          </button>
+        </li>
+      } @empty {
+        <li class="todo-empty">Nothing on the list yet.</li>
+      }
+    </ul>
+
+    <form class="todo-form" (submit)="$event.preventDefault(); addTodo()">
+      <input
+        class="todo-input"
+        type="text"
+        placeholder="What do you need to do?"
+        [ngModel]="draft()"
+        (ngModelChange)="draft.set($event)"
+        (keydown.enter)="$event.preventDefault(); addTodo()"
+        name="todo-draft"
+      />
+      <button type="submit" class="btn btn-primary">
+        Add
+        <span class="btn-icon mono">+</span>
+      </button>
+    </form>
+  </div>
+</div>

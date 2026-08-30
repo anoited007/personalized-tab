@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "newtab",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["ng", "serve", "newtab", "--port", "4300"],
+      "port": 4300
+    },
+    {
+      "name": "options",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["ng", "serve", "options", "--port", "4301"],
+      "port": 4301
+    },
+    {
+      "name": "popup",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["ng", "serve", "popup", "--port", "4302"],
+      "port": 4302
+    }
+  ]
+}

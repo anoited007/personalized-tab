@@ -1,0 +1,18 @@
+<div class="toggle-row">
+  <div class="toggle-copy">
+    <p class="toggle-label">{{ label() }}</p>
+    @if (description()) {
+      <p class="toggle-description">{{ description() }}</p>
+    }
+  </div>
+  <button
+    type="button"
+    class="switch"
+    role="switch"
+    [attr.aria-checked]="checked()"
+    [class.on]="checked()"
+    (click)="toggle()"
+  >
+    <span class="switch-thumb"></span>
+  </button>
+</div>

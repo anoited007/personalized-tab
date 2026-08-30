@@ -1,0 +1,129 @@
+:host {
+  display: block;
+}
+
+.stage {
+  position: relative;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background: var(--void);
+}
+
+.glow {
+  position: fixed;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.glow-a {
+  top: -12vw;
+  right: -8vw;
+  background: var(--phosphor);
+}
+
+.glow-b {
+  bottom: -16vw;
+  left: -10vw;
+  background: var(--violet);
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6) var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.page-header {
+  margin-bottom: var(--space-4);
+}
+
+.page-header h1 {
+  margin-top: var(--space-3);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.page-sub {
+  margin-top: var(--space-2);
+  color: var(--ink-45);
+  font-size: 0.9rem;
+}
+
+.text-input {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-3);
+  padding: 0.7em 1em;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ink-100);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.text-input:focus {
+  border-color: var(--phosphor-dim);
+}
+
+.field-label {
+  display: block;
+  margin-top: var(--space-5);
+  font-size: 0.75rem;
+  color: var(--ink-45);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.field-hint {
+  margin-top: var(--space-2);
+  font-size: 0.76rem;
+  color: var(--ink-25);
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.segment {
+  padding: 0.5em 1em;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--hairline);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--ink-70);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    background 300ms var(--ease-spring),
+    color 300ms var(--ease-spring);
+}
+
+.segment.active {
+  background: var(--phosphor);
+  border-color: var(--phosphor);
+  color: var(--void-strong);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.status {
+  color: var(--phosphor);
+  font-size: 0.8rem;
+}

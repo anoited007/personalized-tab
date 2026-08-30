@@ -1,0 +1,116 @@
+<main class="stage">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+
+  <div class="page">
+    <header class="page-header">
+      <span class="eyebrow">Settings</span>
+      <h1>Personalized New Tab</h1>
+      <p class="page-sub">Tune what shows up on every new tab.</p>
+    </header>
+
+    <section class="glass-shell">
+      <div class="glass-core pad">
+        <span class="section-label"><span class="bracket">›</span> greeting</span>
+        <input
+          class="text-input"
+          type="text"
+          placeholder="Your name, or a mantra"
+          [ngModel]="draft().greeting ?? ''"
+          (ngModelChange)="patch({ greeting: $event || null })"
+        />
+      </div>
+    </section>
+
+    <section class="glass-shell">
+      <div class="glass-core pad">
+        <span class="section-label"><span class="bracket">#</span> feed</span>
+
+        <div class="segmented">
+          @for (cat of categories; track cat.value) {
+            <button
+              type="button"
+              class="segment mono"
+              [class.active]="draft().feedToDisplay === cat.value"
+              (click)="patch({ feedToDisplay: cat.value })"
+            >
+              {{ cat.label }}
+            </button>
+          }
+        </div>
+
+        <label class="field-label" for="custom-feed">Custom feed URLs</label>
+        <input
+          id="custom-feed"
+          class="text-input"
+          type="text"
+          placeholder="https://example.com/feed, https://example.com/other-feed"
+          [ngModel]="draft().feed"
+          (ngModelChange)="patch({ feed: $event })"
+        />
+        <p class="field-hint">Comma-separated RSS/Atom URLs. Shown under the "Custom only" or "All" categories.</p>
+      </div>
+    </section>
+
+    <section class="glass-shell">
+      <div class="glass-core pad">
+        <span class="section-label"><span class="bracket">::</span> timezones</span>
+        <app-timezone-settings [selected]="draft().timezones" (selectedChange)="patch({ timezones: $event })" />
+      </div>
+    </section>
+
+    <section class="glass-shell">
+      <div class="glass-core pad">
+        <span class="section-label"><span class="bracket">$</span> widgets</span>
+
+        <app-toggle-row
+          label="Greeting"
+          description="Show the editable name/mantra card."
+          [checked]="draft().enableGreeting"
+          (checkedChange)="patch({ enableGreeting: $event })"
+        />
+        <app-toggle-row
+          label="Feed"
+          description="Security and AI & Robotics news, plus your custom feeds."
+          [checked]="draft().enableFeed"
+          (checkedChange)="patch({ enableFeed: $event })"
+        />
+        <app-toggle-row
+          label="Clock"
+          description="Live clock across your selected timezones."
+          [checked]="draft().enableClock"
+          (checkedChange)="patch({ enableClock: $event })"
+        />
+        <app-toggle-row
+          label="Verse of the day"
+          description="Daily Bible verse."
+          [checked]="draft().enableReligiousQuote"
+          (checkedChange)="patch({ enableReligiousQuote: $event })"
+        />
+        <app-toggle-row
+          label="Quote"
+          description="Random famous quote."
+          [checked]="draft().enableFamousQuote"
+          (checkedChange)="patch({ enableFamousQuote: $event })"
+        />
+        <app-toggle-row
+          label="To-do list"
+          description="A simple task list, saved locally."
+          [checked]="draft().enableTodo"
+          (checkedChange)="patch({ enableTodo: $event })"
+        />
+      </div>
+    </section>
+
+    <div class="actions">
+      <button type="button" class="btn btn-primary" (click)="save()">
+        Save
+        <span class="btn-icon mono">↵</span>
+      </button>
+      <button type="button" class="btn" (click)="reset()">Reset to defaults</button>
+      @if (status()) {
+        <span class="status mono">{{ status() }}</span>
+      }
+    </div>
+  </div>
+</main>

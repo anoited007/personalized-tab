@@ -1,0 +1,47 @@
+<div class="glass-shell enter feed-shell">
+  <div class="glass-core pad feed-core">
+    <div class="feed-header">
+      <span class="section-label"><span class="bracket">#</span> feed</span>
+
+      @if (availableTabs().length > 1) {
+        <div class="feed-tabs" role="tablist">
+          @for (tab of availableTabs(); track tab) {
+            <button
+              type="button"
+              class="feed-tab mono"
+              [class.active]="activeTab() === tab"
+              (click)="activeTab.set(tab)"
+            >
+              {{ label(tab) }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="feed-body">
+      @if (loading()) {
+        <p class="feed-status mono">Loading feed…</p>
+      } @else if (visibleFeeds().length === 0) {
+        <p class="feed-status mono">No items to show yet.</p>
+      }
+
+      @for (source of visibleFeeds(); track source.sourceTitle) {
+        <section class="feed-source">
+          <h3 class="feed-source-title">{{ source.sourceTitle }}</h3>
+          <ul class="feed-items">
+            @for (item of source.items; track item.link) {
+              <li>
+                <a class="feed-item" [href]="item.link" target="_blank" rel="noreferrer noopener">{{ item.title }}</a>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (failedSources().length) {
+        <p class="feed-status mono muted">Unavailable right now: {{ failedSources().join(', ') }}</p>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<main class="stage">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div class="scrim"></div>
+
+  @if (loaded()) {
+    <div class="dashboard">
+      @if (settings().enableFeed) {
+        <section class="col col-feed">
+          <app-feed-panel />
+        </section>
+      }
+
+      <section class="col col-main">
+        @if (settings().enableGreeting) {
+          <app-greeting-card />
+        }
+        @if (settings().enableClock) {
+          <app-clock-card />
+        }
+        @if (settings().enableReligiousQuote || settings().enableFamousQuote) {
+          <div class="quotes-row">
+            @if (settings().enableReligiousQuote) {
+              <app-quote-card label="Verse of the day" [quote]="religiousQuote()" [delay]="240" />
+            }
+            @if (settings().enableFamousQuote) {
+              <app-quote-card label="Quote" [quote]="famousQuote()" [delay]="320" />
+            }
+          </div>
+        }
+      </section>
+
+      @if (settings().enableTodo) {
+        <section class="col col-todo">
+          <app-todo-panel />
+        </section>
+      }
+    </div>
+  }
+</main>

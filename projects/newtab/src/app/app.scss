@@ -1,0 +1,91 @@
+:host {
+  display: block;
+}
+
+.stage {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(3, 3, 4, 0.55) 0%, rgba(3, 3, 4, 0.86) 100%),
+    url('/bg.jpg') center / cover no-repeat;
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%, rgba(3, 3, 4, 0) 0%, rgba(3, 3, 4, 0.65) 78%);
+  z-index: 1;
+}
+
+.glow {
+  position: fixed;
+  width: 46vw;
+  height: 46vw;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.28;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-a {
+  top: -14vw;
+  left: -10vw;
+  background: var(--phosphor);
+}
+
+.glow-b {
+  bottom: -18vw;
+  right: -12vw;
+  background: var(--violet);
+}
+
+.dashboard {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr) minmax(280px, 360px);
+  gap: var(--space-6);
+  height: 100dvh;
+  padding: var(--space-8);
+}
+
+.col {
+  min-height: 0;
+  height: 100%;
+}
+
+.col-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  overflow-y: auto;
+  padding-top: var(--space-8);
+}
+
+.quotes-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 1080px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 100dvh;
+    padding: var(--space-4);
+  }
+
+  .col {
+    height: 60vh;
+  }
+
+  .col-main {
+    height: auto;
+    overflow-y: visible;
+    padding-top: 0;
+  }
+}
