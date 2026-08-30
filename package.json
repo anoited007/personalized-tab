@@ -7,6 +7,7 @@
     "start:options": "ng serve options",
     "start:popup": "ng serve popup",
     "build": "node scripts/build-extension.mjs",
+    "package": "node scripts/build-extension.mjs && node scripts/package-extension.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

@@ -49,3 +49,6 @@ Thumbs.db
 
 # Built extension (run `npm run build` to regenerate)
 /dist-extension
+
+# Zipped extension packages (run `npm run package` to regenerate)
+/releases
