@@ -1,7 +1,8 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SettingsService } from '@shared/services/settings.service';
-import { DEFAULT_SETTINGS, FeedCategory, Settings } from '@shared/models/models';
+import { ACCENT_COLORS, DEFAULT_SETTINGS, FeedCategory, Settings, THEMES } from '@shared/models/models';
+import { applyTheme } from '@shared/services/apply-theme';
 import { ToggleRow } from './components/toggle-row/toggle-row';
 import { TimezoneSettings } from './components/timezone-settings/timezone-settings';
 
@@ -22,8 +23,15 @@ export class App implements OnInit {
   private readonly settingsService = inject(SettingsService);
 
   protected readonly categories = FEED_CATEGORIES;
+  protected readonly accentColors = ACCENT_COLORS;
+  protected readonly themes = THEMES;
   protected readonly draft = signal<Settings>(DEFAULT_SETTINGS);
   protected readonly status = signal('');
+
+  constructor() {
+    // Live-preview the theme/accent as it's picked, before Save is pressed.
+    effect(() => applyTheme(this.draft().theme, this.draft().accentColor));
+  }
 
   async ngOnInit(): Promise<void> {
     const settings = await this.settingsService.load();
@@ -32,6 +40,10 @@ export class App implements OnInit {
 
   patch(partial: Partial<Settings>): void {
     this.draft.set({ ...this.draft(), ...partial });
+  }
+
+  protected percentOf(value: number): number {
+    return Math.round(value * 100);
   }
 
   async save(): Promise<void> {

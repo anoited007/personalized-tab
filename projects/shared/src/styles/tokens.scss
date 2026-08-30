@@ -1,7 +1,14 @@
-// Design tokens — "Ethereal Glass" tech vibe with terminal accents.
-// Deep void background (the extension's own photo sits behind a scrim),
-// glass panels, and a single phosphor accent used sparingly for
-// terminal-flavored details (prompts, brackets, the clock's blinking cursor).
+// Design tokens.
+//
+// Two full themes live here, both driven by attributes on <html>:
+//   - Terminal (default): "Ethereal Glass" — deep void, blurred glass
+//     panels, a swappable phosphor accent (see [data-accent]).
+//   - Globetrotter ([data-theme="globetrotter"]): mid-century travel-poster
+//     noir — flat opaque red/black/cream, condensed display type, sharp
+//     rectangular edges, no blur.
+// Every component styles off these custom properties, never a literal
+// color/radius/font — that's what lets one attribute swap re-skin the
+// whole app. Driven by Settings.theme / Settings.accentColor (models.ts).
 :root {
   --void: #07080a;
   --void-strong: #030304;
@@ -18,14 +25,21 @@
   --glass-core: rgba(12, 13, 16, 0.62);
   --glass-core-strong: rgba(8, 9, 11, 0.78);
 
+  // Default accent — Mint. Overridden per-value by [data-accent="..."]
+  // below; keep this block's colors in sync with the 'mint' entry in
+  // ACCENT_COLORS.
   --phosphor: #8bffc2;
   --phosphor-dim: rgba(139, 255, 194, 0.55);
   --violet: #a78bfa;
-  --amber: #ffb578;
 
   --radius-shell: 6px;
   --radius-core: 3px;
   --radius-pill: 3px;
+  --border-width: 1px;
+  --blur-amount: 28px;
+  // Applied to the ripple canvas / fallback background photo only —
+  // never to foreground UI — so a theme can tint the photo itself.
+  --photo-filter: none;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -37,11 +51,56 @@
   --space-16: 4rem;
 
   --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
-  --font-body: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --duration-fluid: 600ms;
 
   color-scheme: dark;
+}
+
+:root[data-accent='azure'] {
+  --phosphor: #5ea1ff;
+  --phosphor-dim: rgba(94, 161, 255, 0.55);
+}
+
+:root[data-accent='amber'] {
+  --phosphor: #ffb84d;
+  --phosphor-dim: rgba(255, 184, 77, 0.55);
+}
+
+// Globetrotter — placed last so it wins over any [data-accent] block still
+// set on Settings.accentColor (applyTheme() clears data-accent while this
+// is active, but source order makes that belt-and-braces).
+:root[data-theme='globetrotter'] {
+  --void: #131010;
+  --void-strong: #0a0807;
+
+  --ink-100: rgba(245, 235, 219, 0.97);
+  --ink-70: rgba(245, 235, 219, 0.76);
+  --ink-45: rgba(245, 235, 219, 0.5);
+  --ink-25: rgba(245, 235, 219, 0.3);
+
+  --hairline: rgba(10, 8, 7, 0.9);
+  --hairline-soft: rgba(10, 8, 7, 0.55);
+
+  // Flat opaque blocks, not glass — a solid black shell around a solid,
+  // slightly-lighter core.
+  --glass-shell: #0a0807;
+  --glass-core: #171211;
+  --glass-core-strong: #1c1615;
+
+  --phosphor: #d7263d;
+  --phosphor-dim: rgba(215, 38, 61, 0.6);
+  --violet: #c99a3b;
+
+  --radius-shell: 2px;
+  --radius-core: 1px;
+  --radius-pill: 2px;
+  --border-width: 2px;
+  --blur-amount: 0px;
+  --photo-filter: sepia(0.45) saturate(2.2) hue-rotate(-46deg) contrast(1.2) brightness(0.85);
+
+  --font-display: 'Oswald', 'Segoe UI', system-ui, sans-serif;
 }

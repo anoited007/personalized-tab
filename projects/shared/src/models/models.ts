@@ -37,6 +37,32 @@ export interface Quote {
   author: string;
 }
 
+export type Theme = 'globetrotter' | 'terminal';
+
+export const THEMES: { id: Theme; label: string; description: string; swatch: [string, string] }[] = [
+  {
+    id: 'globetrotter',
+    label: 'Globetrotter',
+    description: 'Red & black, mid-century travel-poster noir.',
+    swatch: ['#0d0a09', '#d7263d'],
+  },
+  {
+    id: 'terminal',
+    label: 'Terminal',
+    description: 'Dark glass with a terminal accent.',
+    swatch: ['#07080a', '#8bffc2'],
+  },
+];
+
+/** Sub-accent, only meaningful within the Terminal theme. */
+export type AccentColor = 'mint' | 'azure' | 'amber';
+
+export const ACCENT_COLORS: { id: AccentColor; label: string; swatch: string }[] = [
+  { id: 'mint', label: 'Mint', swatch: '#8bffc2' },
+  { id: 'azure', label: 'Azure', swatch: '#5ea1ff' },
+  { id: 'amber', label: 'Amber', swatch: '#ffb84d' },
+];
+
 export interface Settings {
   enableGreeting: boolean;
   enableFeed: boolean;
@@ -44,11 +70,18 @@ export interface Settings {
   enableReligiousQuote: boolean;
   enableFamousQuote: boolean;
   enableTodo: boolean;
+  enableRipple: boolean;
+  /** 0 (barely there) to 1 (strong) — how much the ripple effect distorts/reacts. */
+  rippleIntensity: number;
+  enableTypingEffect: boolean;
+  enableCursor: boolean;
   greeting: string | null;
   feedToDisplay: FeedCategory;
   /** Raw comma-separated custom feed URLs, exactly as entered in Settings. */
   feed: string;
   timezones: Timezone[];
+  theme: Theme;
+  accentColor: AccentColor;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -58,8 +91,14 @@ export const DEFAULT_SETTINGS: Settings = {
   enableReligiousQuote: true,
   enableFamousQuote: true,
   enableTodo: true,
+  enableRipple: true,
+  rippleIntensity: 0.35,
+  enableTypingEffect: true,
+  enableCursor: true,
   greeting: null,
   feedToDisplay: 'all',
   feed: '',
   timezones: [],
+  theme: 'globetrotter',
+  accentColor: 'mint',
 };

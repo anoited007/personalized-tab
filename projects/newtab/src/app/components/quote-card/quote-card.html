@@ -2,7 +2,7 @@
   <div class="glass-shell enter" [style.animation-delay.ms]="delay()">
     <div class="glass-core pad">
       <span class="section-label"><span class="bracket">"</span> {{ label() }}</span>
-      <p class="quote-text"><span [appTypewriter]="q.text"></span><span class="cursor">_</span></p>
+      <p class="quote-text"><span [appTypewriter]="q.text"></span><app-cursor /></p>
       <p class="quote-author mono">— {{ q.author }}</p>
     </div>
   </div>

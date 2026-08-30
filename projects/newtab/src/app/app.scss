@@ -6,9 +6,30 @@
   position: relative;
   min-height: 100dvh;
   overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(3, 3, 4, 0.55) 0%, rgba(3, 3, 4, 0.86) 100%),
-    url('/bg.jpg') center / cover no-repeat;
+}
+
+// The fallback background photo, as its own filterable layer — the fallback
+// for when the ripple effect doesn't run (WebGL unsupported, or
+// prefers-reduced-motion). When it does run, [appRipples] prepends a
+// .ripples-canvas covering this and renders the same photo through its own
+// WebGL texture instead (see base.scss's .ripples-canvas rule) — both use
+// --photo-filter so a theme can tint the photo without touching foreground
+// UI (a filter on .stage itself would filter its children too).
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/bg.jpg') center / cover no-repeat;
+  filter: var(--photo-filter);
+}
+
+// Darkens the photo/canvas for legibility — a separate layer (not baked into
+// .stage's own background) so it still applies over the ripple canvas.
+.dark-gradient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(3, 3, 4, 0.55) 0%, rgba(3, 3, 4, 0.86) 100%);
 }
 
 .scrim {

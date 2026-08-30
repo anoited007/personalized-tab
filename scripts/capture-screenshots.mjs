@@ -23,6 +23,12 @@ const DEMO_SYNC = {
   greeting: 'Kwesi',
   feedToDisplay: 'all',
   feed: '',
+  theme: 'globetrotter',
+  accentColor: 'mint',
+  enableRipple: true,
+  rippleIntensity: 0.35,
+  enableTypingEffect: true,
+  enableCursor: true,
   timezones: [
     { timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, abbreviation: 'Local' },
     { timezone: 'Asia/Tokyo', abbreviation: 'JST' },

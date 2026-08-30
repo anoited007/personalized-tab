@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SettingsService } from '@shared/services/settings.service';
 import { TypewriterDirective } from '@shared/directives/typewriter.directive';
+import { CursorComponent } from '@shared/ui/cursor.component';
 
 function timeOfDayGreeting(): string {
   const hour = new Date().getHours();
@@ -12,7 +13,7 @@ function timeOfDayGreeting(): string {
 
 @Component({
   selector: 'app-greeting-card',
-  imports: [FormsModule, TypewriterDirective],
+  imports: [FormsModule, TypewriterDirective, CursorComponent],
   templateUrl: './greeting-card.html',
   styleUrl: './greeting-card.scss',
 })

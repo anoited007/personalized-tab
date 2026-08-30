@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit, computed, inject } from '@angular/core';
 import { ClockService } from '@shared/services/clock.service';
 import { SettingsService } from '@shared/services/settings.service';
+import { CursorComponent } from '@shared/ui/cursor.component';
 
 @Component({
   selector: 'app-clock-card',
-  imports: [],
+  imports: [CursorComponent],
   templateUrl: './clock-card.html',
   styleUrl: './clock-card.scss',
 })

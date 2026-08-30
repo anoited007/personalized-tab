@@ -18,10 +18,16 @@ function defaultSettings() {
     enableReligiousQuote: true,
     enableFamousQuote: true,
     enableTodo: true,
+    enableRipple: true,
+    rippleIntensity: 0.35,
+    enableTypingEffect: true,
+    enableCursor: true,
     greeting: null,
     feedToDisplay: 'all',
     feed: '',
     timezones: [{ timezone, abbreviation: timezoneAbbreviation(timezone) }],
+    theme: 'globetrotter',
+    accentColor: 'mint',
   };
 }
 

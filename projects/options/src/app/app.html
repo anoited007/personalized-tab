@@ -24,6 +24,50 @@
 
     <section class="glass-shell">
       <div class="glass-core pad">
+        <span class="section-label"><span class="bracket">◆</span> theme</span>
+
+        <div class="theme-cards">
+          @for (t of themes; track t.id) {
+            <button
+              type="button"
+              class="theme-card"
+              [class.active]="draft().theme === t.id"
+              (click)="patch({ theme: t.id })"
+            >
+              <span class="theme-card-swatch">
+                <span [style.background]="t.swatch[0]"></span>
+                <span [style.background]="t.swatch[1]"></span>
+              </span>
+              <span class="theme-card-copy">
+                <span class="theme-card-label">{{ t.label }}</span>
+                <span class="theme-card-description">{{ t.description }}</span>
+              </span>
+            </button>
+          }
+        </div>
+
+        @if (draft().theme === 'terminal') {
+          <label class="field-label">Accent</label>
+          <div class="swatches">
+            @for (accent of accentColors; track accent.id) {
+              <button
+                type="button"
+                class="swatch"
+                [class.active]="draft().accentColor === accent.id"
+                (click)="patch({ accentColor: accent.id })"
+                [attr.aria-label]="accent.label"
+              >
+                <span class="swatch-color" [style.background]="accent.swatch"></span>
+                <span class="swatch-label mono">{{ accent.label }}</span>
+              </button>
+            }
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="glass-shell">
+      <div class="glass-core pad">
         <span class="section-label"><span class="bracket">#</span> feed</span>
 
         <div class="segmented">
@@ -98,6 +142,41 @@
           description="A simple task list, saved locally."
           [checked]="draft().enableTodo"
           (checkedChange)="patch({ enableTodo: $event })"
+        />
+        <app-toggle-row
+          label="Background ripple"
+          description="The photo ripples like water under your cursor."
+          [checked]="draft().enableRipple"
+          (checkedChange)="patch({ enableRipple: $event })"
+        />
+        @if (draft().enableRipple) {
+          <div class="slider-row">
+            <label class="field-label" for="ripple-intensity">Ripple sensitivity</label>
+            <div class="slider-control">
+              <input
+                id="ripple-intensity"
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                [ngModel]="draft().rippleIntensity"
+                (ngModelChange)="patch({ rippleIntensity: $event })"
+              />
+              <span class="mono slider-value">{{ percentOf(draft().rippleIntensity) }}%</span>
+            </div>
+          </div>
+        }
+        <app-toggle-row
+          label="Typing effect"
+          description="Quotes and the greeting type in like a terminal."
+          [checked]="draft().enableTypingEffect"
+          (checkedChange)="patch({ enableTypingEffect: $event })"
+        />
+        <app-toggle-row
+          label="Blinking cursor"
+          description="The trailing cursor on the clock, quotes, and greeting."
+          [checked]="draft().enableCursor"
+          (checkedChange)="patch({ enableCursor: $event })"
         />
       </div>
     </section>

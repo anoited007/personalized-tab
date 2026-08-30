@@ -21,9 +21,20 @@ on **Manifest V3**.
   toggleable.
 - **To-do list** — a simple, locally-saved task list.
 - **Greeting** — an editable name or mantra on every new tab.
-- **Settings** — every widget above can be turned on or off, and the feed
-  category, custom feeds, and timezones are all configurable from the options
-  page.
+- **Background ripple** — your photo ripples like water as you move the mouse
+  over it (WebGL; falls back to a plain static photo where WebGL isn't
+  available). Sensitivity is adjustable, and it's toggleable like everything
+  else below.
+- **Themes** — **Globetrotter** (red & black, mid-century travel-poster noir —
+  flat opaque cards, condensed display type, sharp edges, a duotone-filtered
+  background photo) or **Terminal** (the dark-glass look, with a Mint, Azure,
+  or Amber accent). A full re-skin, not just a color swap — both are
+  selectable, with a live preview, from the options page.
+- **Settings** — every widget (greeting, feed, clock, both quotes, to-do,
+  background ripple, the typing effect, and the blinking cursor) can be
+  turned on or off independently, and the feed category, custom feeds,
+  timezones, ripple sensitivity, and theme are all configurable from the
+  options page.
 
 ## Install from source
 

@@ -1,4 +1,10 @@
-<main class="stage">
+<main
+  class="stage"
+  appRipples="/bg.jpg"
+  [enabled]="settings().enableRipple"
+  [intensity]="settings().rippleIntensity"
+>
+  <div class="dark-gradient"></div>
   <div class="glow glow-a"></div>
   <div class="glow glow-b"></div>
   <div class="scrim"></div>

@@ -4,7 +4,7 @@
 
     @if (!editing()) {
       <button type="button" class="greeting-text" (click)="startEditing()">
-        <span [appTypewriter]="displayText()"></span><span class="cursor">_</span>
+        <span [appTypewriter]="displayText()"></span><app-cursor />
       </button>
     } @else {
       <input
