@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@angular/build": "^22.1.6",
-    "@angular/cli": "^22.1.6",
+    "@angular/cli": "^22.2.4",
     "@angular/compiler-cli": "^22.1.0",
     "@types/chrome": "^0.2.7",
     "chrome-webstore-upload-cli": "^4.0.1",
